@@ -32,13 +32,13 @@
 <h2>Scope</h2>
 <section>
 <h2>Application Model</h2>
-<p>The Common Media Application Format is designed to support segmented media delivery and presentation. In typical use, a client referred to as a Player receives short (e.g. 2-10s) periods of media (Segments). A succession of media Segments with continuous content forms a Track. Each Track contains a single media type, i.e. audio, video, or subtitles. Multiple Tracks (e.g. audio and video) may be individually selected from alternatives, received, and played simultaneously; a process called “late binding”. The Player synchronizes decoding and presentation of parallel Tracks, and renders Fragments within each track in a continuous sequence of media samples to produce multimedia Presentations. See Section ‎6 for more detail.</p>
+<p>The Common Media Application Format is designed to support segmented media delivery and presentation. In typical use, a client referred to as a Player receives short (e.g. 2-10s) periods of media (Segments). A succession of media Segments with continuous content forms a Track. Each Track contains a single media type, i.e. audio, video, or subtitles. Multiple Tracks (e.g. audio and video) may be individually selected from alternatives, received, and played simultaneously; a process called “late binding”. The Player synchronizes decoding and presentation of parallel Tracks, and renders Fragments within each track in a continuous sequence of media samples to produce multimedia Presentations. See <a href="#cmaf-architecture"></a> for more detail.</p>
 <p>The set of Segments to be played in each Presentation, their identity, order, type, grouping, and other information is conveyed by a presentation description called a Manifest. Presentations may be sequenced and otherwise combined in a Composition that describes multiple Presentations and when they are to be played.</p>
 </section>
 <section>
 <h2>Scope within the Application Model</h2>
 <p>In order to apply to the widest range of playback systems, the Common Media Application Format only defines how CMAF Fragments are to be encoded and packaged using the ISO Base Media File Format so that they are suitable for segmented media delivery and playback. It does not define the form or the content of the Manifest. It does not define how multiple Presentations are combined in a Composition. It does not define how the Segments are to be transported to the Player.</p>
-<p>This specification does not define Player responsibilities or behavior, although requirements for synchronization and seamless decoding of adaptively selected CMAF Segments may be inferred from the specified CMAF Fragment encoding constraints. (Note however that Section ‎6.1 lists several affordances of CMAF Segments that are available to Player implementations.)</p>
+<p>This specification does not define Player responsibilities or behavior, although requirements for synchronization and seamless decoding of adaptively selected CMAF Segments may be inferred from the specified CMAF Fragment encoding constraints. (Note however that <a href="#fundamental-concepts"></a> lists several affordances of CMAF Segments that are available to Player implementations.)</p>
 <p>CMAF defines Track and Fragment encryption, but it does not define key delivery or encrypted content playback policy.</p>
 <p>These constraints are intended to define standard interoperability points between encoders and decoders, and content packagers and players; and to enable the same Tracks to be used for a wide range of adaptive streaming, broadcast/multicast, and file playback applications.</p>
 </section>
@@ -156,7 +156,7 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">CMAF Header</td>
-<td style="text-align: left;">sequence of ISO Base Media File Format boxes starting with a file type box and including a movie box that includes initialization information common to a set of Segments. (Section ‎7.3.3).</td>
+<td style="text-align: left;">sequence of ISO Base Media File Format boxes starting with a file type box and including a movie box that includes initialization information common to a set of Segments. (<a href="#cmaf-header-initialization-segment"></a>).</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Composition</td>
@@ -164,7 +164,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CMAF Presentation</td>
-<td style="text-align: left;">set of one or more synchronized CMAF Selection Sets, each containing Segments of one media type that can be sequentially decoded to produce a presentation, potentially including synchronized audio, video, and subtitles (Section ‎6.1.8)</td>
+<td style="text-align: left;">set of one or more synchronized CMAF Selection Sets, each containing Segments of one media type that can be sequentially decoded to produce a presentation, potentially including synchronized audio, video, and subtitles (<a href="#cmaf-presentation-and-timing-model"></a>)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Fragment</td>
@@ -172,7 +172,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CMAF Segment</td>
-<td style="text-align: left;">resource consisting of one or more consecutive CMAF Fragments from a CMAF Track (Section ‎6.1.3)</td>
+<td style="text-align: left;">resource consisting of one or more consecutive CMAF Fragments from a CMAF Track (<a href="#cmaf-fragments-segments-and-chunks"></a>)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Segment Duration</td>
@@ -180,19 +180,19 @@
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Low Latency Decodable Chunk</td>
-<td style="text-align: left;">resource that contains a single Movie Fragment Box and Media Data Box that contains a sequential and contiguous subset of the samples of a CMAF Fragment to allow faster packaging and delivery of video samples during live encoding. (Section ‎7.3.7).</td>
+<td style="text-align: left;">resource that contains a single Movie Fragment Box and Media Data Box that contains a sequential and contiguous subset of the samples of a CMAF Fragment to allow faster packaging and delivery of video samples during live encoding. (<a href="#cmaf-low-latency-delivery-chunks"></a>).</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Selection Set</td>
-<td style="text-align: left;">set of CMAF Switching Sets, where each Switching Set encodes an alternative aspect of the same program over the same time period, only one of which is intended to be played at a time, e.g. a different language or codec (Section ‎6.1.7).</td>
+<td style="text-align: left;">set of CMAF Switching Sets, where each Switching Set encodes an alternative aspect of the same program over the same time period, only one of which is intended to be played at a time, e.g. a different language or codec (<a href="#cmaf-track-selection-sets-and-late-binding"></a>).</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CMAF Switching Set</td>
-<td style="text-align: left;">set of CMAF Tracks, each of which is an alternative encoding of the same source content constrained to enable seamless Track switching and decoding (Section ‎6.1.6).</td>
+<td style="text-align: left;">set of CMAF Tracks, each of which is an alternative encoding of the same source content constrained to enable seamless Track switching and decoding (<a href="#cmaf-track-switching-sets-and-adaptive-switching"></a>).</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Track</td>
-<td style="text-align: left;">sequence of CMAF Segments of the same media type ordered by presentation time, as well as the CMAF Header necessary to initialize that sequence of Segments. (Section ‎6.1.4)</td>
+<td style="text-align: left;">sequence of CMAF Segments of the same media type ordered by presentation time, as well as the CMAF Header necessary to initialize that sequence of Segments. (<a href="#cmaf-tracks"></a>)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CMAF Track File</td>
@@ -208,7 +208,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manifest</td>
-<td style="text-align: left;">document that describes one or more CMAF Presentations (Section ‎6.1.9)</td>
+<td style="text-align: left;">document that describes one or more CMAF Presentations (<a href="#manifest"></a>)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Player</td>
@@ -225,7 +225,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">Sub-sampling</td>
-<td style="text-align: left;">video encoding using an exact fraction of the number of spatial samples in the source video, i.e. the fraction yields a spatial sample count that is an integer or even integer, as specified in Section 10.</td>
+<td style="text-align: left;">video encoding using an exact fraction of the number of spatial samples in the source video, i.e. the fraction yields a spatial sample count that is an integer or even integer, as specified in <a href="#audio-tracks"></a>.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Sync Sample</td>
@@ -294,16 +294,16 @@
 <section>
 <h2>Document Organization</h2>
 <p>Document sections are ordered from general to specific, starting with the scope of CMAF and basic definitions, then the media container specification, Common Encryption for all Track types, then specific Track formats.</p>
-<p><em>Section ‎6 – CMAF Architecture –</em> describes the segmented media playback model and the associated objects defined by the CMAF.</p>
-<p><em>Section ‎7</em> – <em>The Common Media Application Format</em> Container – describes the ISO container format associated with the Common Media Format brand.</p>
-<p><em>Section ‎8</em> – <em>Common Encryption of Tracks</em> – details how digital rights management encryption is applied to the Common Media Format.</p>
-<p><em>Section ‎9 – Video Tracks</em> – describes the video track in relation to the CMAF container and the constraints on each video format.</p>
-<p><em>Section ‎10 Audio Tracks</em> – describes audio tracks, their container constraints, elementary stream sample format, encoding constraints of required and optional audio formats</p>
-<p><em>Section ‎11</em> – <em>Subtitles and Captions</em> – CMAF supports CEA-608, CEA-708 and WebVTT for carrying timed text information.</p>
-<p><em>‎Annex A. – CMAF Presentation and Media Profiles–</em> Presentation Profiles and CMAF Media Profiles that specify encoding constraints and brands intended to signal core interoperability points.</p>
-<p><em>‎Annex B. – CMAF Compatible Tracks and Media Profiles – Specification and Registration of CMAF Compatible Media Profiles and Track bindings.</em></p>
-<p><em>‎Annex C. – Subsampling of Tracks in Track Switching Sets –</em> video encoding guidelines for spatial and temporal subsampling for adaptive streaming.</p>
-<p><em>Annex D. – Example Encoding Parameters for Conformant CMAF Switching Sets</em></p>
+<p><a href="#cmaf-architecture"></a> describes the segmented media playback model and the associated objects defined by the CMAF.</p>
+<p><a href="#the-common-media-application-format-container"></a> describes the ISO container format associated with the Common Media Format brand.</p>
+<p><a href="#common-encryption-of-tracks"></a> details how digital rights management encryption is applied to the Common Media Format.</p>
+<p><a href="#video tracks"></a> describes the video track in relation to the CMAF container and the constraints on each video format.</p>
+<p><a href="#audio-tracks"></a> describes audio tracks, their container constraints, elementary stream sample format, encoding constraints of required and optional audio formats</p>
+<p><a href="#subtitles-and-captions"></a> CMAF supports CEA-608, CEA-708 and WebVTT for carrying timed text information.</p>
+<p><a href="#cmaf-presentations-and-media-profiles"></a> specifies encoding constraints and brands intended to signal core interoperability points.</p>
+<p><a href="#cmaf-compatible-tracks-and-media-profiles"></a> Specification and Registration of CMAF Compatible Media Profiles and Track bindings.</em></p>
+<p><a href="#subsampling-of-tracks-in-track-switching-sets"></a>video encoding guidelines for spatial and temporal subsampling for adaptive streaming.</p>
+<p><a href="#example-encoding-parameters-for-conformant-cmaf-switching-sets"></a></p>
 </section>
 <section>
 <h2>Document Notation and Conventions</h2>
@@ -336,7 +336,7 @@
 <p>The CMAF media objects delivered for playback are Segments, which contain one or more Fragments containing the media data itself, and CMAF Headers, which carry initialization information common to a group of Segments. CMAF also defines logical media objects: Tracks, Switching Sets, Selection Sets, and Presentations. See Figure 1.</p>
 <p>A Manifest is included in the application model to describe media objects as Presentations and enable playback (see Figure 1) , but the specific implementation of the Manifest is beyond the scope of this specification. The same media objects may be described by multiple manifest formats, and may be combined with different media objects in different Presentations using different Manifests. Reuse of the same media objects in different Presentations and Manifests greatly improves encoding, storage and delivery efficiency.</p>
 <p>It is possible to organize Presentations in sequences and other relationships referred to in this specification as a Composition. Composition examples include a sequence of programs and advertisements in a channel, an ad presentation that overlays a program presentation, a programmatic selection of a sequence of Manifests, manual selection of Presentations from a menu, etc. CMAF defines the encoding and organization of Segments and Tracks within each Presentation, but does not define or constrain the Composition of multiple Presentations.</p>
-<p>Subsections of Section ‎6 describe the important constraints on these media objects. Subsequent Sections of CMAF specify the container and track formats in detail.</p>
+<p>Subsections of <a href="#cmaf-architecture"></a> describe the important constraints on these media objects. Subsequent Sections of CMAF specify the container and track formats in detail.</p>
 <p><img src="media/cmaf-media-object-model.png" width="620" height="400" alt="CMAF media object model" /></p>
 <p><span id="_Ref432004518" class="anchor"><span id="_Toc447628025" class="anchor"></span></span>Figure 1 - CMAF Media Object Model</p>
 </section>
@@ -503,7 +503,7 @@
 </section>
 <section>
 <h2 id="cmaf-brands">CMAF Brands</h2>
-<p>The CMAF container file type brand is ‘cmfc’. The requirements of this brand include the requirements of the brand ‘iso9’ [<a href="#ISOMREF"><em>ISOM</em></a>]. It also includes boxes specified in Common Encryption [<a href="#CENCREF"><em>CENC</em></a>], [DASH], MPEG-4 Part 15 for storage of NAL Structure video [<a href="#ISOVIDEOREF"><em>ISOVIDEO</em></a>], and those boxes defined by referenced audio specifications, as defined in Section ‎10.</p>
+<p>The CMAF container file type brand is ‘cmfc’. The requirements of this brand include the requirements of the brand ‘iso9’ [<a href="#ISOMREF"><em>ISOM</em></a>]. It also includes boxes specified in Common Encryption [<a href="#CENCREF"><em>CENC</em></a>], [DASH], MPEG-4 Part 15 for storage of NAL Structure video [<a href="#ISOVIDEOREF"><em>ISOVIDEO</em></a>], and those boxes defined by referenced audio specifications, as defined in <a href="#audio-tracks"></a>.</p>
 <p>The brand ‘cmfc’ SHALL be listed in compatible_brands. The brand ‘iso9’ SHALL be listed in compatible_brands. If ‘cmfc’ is the major_brand, the minor_version SHALL be 0.</p>
 <p>Note: File readers should read possible future versions of CMAF that increment the minor_version number.</p>
 <p>A CMAF Track SHALL also contain a CMAF Media Profile brand specified in ‎Annex A.</p>
