@@ -13,7 +13,8 @@
 </head>
 <body>
 <h1>Common Media Application Format for Presentation of Segmented Media</h1>
-<!--section-->
+<section id="abstract" style="display: none;"></section>
+<section class="introductory">
 <h2>Introduction</h2>
 <p>The Common Media Application Format (CMAF) is a Media Application Format that specifies how to use the ISO Base Media File Format and other MPEG standards to package media for segmented delivery. It is optimized for efficient adaptive playback of a single presentation containing encoded and encrypted Tracks by a wide range of devices over the Internet, using a variety of delivery methods.</p>
 <p>The Common Media Application Format is intended to improve the efficiency of large-scale video distribution over the Internet and improve device compatibility for all delivery methods. It seeks to address the current situation where the same video has to be encoded in several different formats that multiply the network storage and bandwidth consumed, and complicate device compatibility by requiring support for multiple media formats that are intended to produce the same video presentation.</p>
@@ -26,7 +27,7 @@
 <p>To support interoperability, CMAF defines a file brand and Media Profiles for encoded media, including video (AVC &amp; HEVC), audio (AAC) and subtitles (WebVTT &amp; Closed Captions). These brands and Media Profiles indicate when a Track conforms to CMAF packaging and encoding constraints, and the maximum decoder requirements necessary to decode that Media Profile. The CMAF container brand can also be used in combination with CMAF Compatible Media Profiles, which are not specified in CMAF, but conform to CMAF container, Track, and functional constraints. CMAF specifies Presentation Profiles that define the minimum necessary Tracks and Media Profiles that must be included in a conforming Presentation. Wide support for these CMAF Presentation and Media Profiles by players will eliminate the need to store multiple variations of content, which will increase encoding, storage, and edge caching efficiency for distributors.</p>
 <p>CMAF uses MPEG Common Encryption for media sample encryption. This allows different DRM systems on different devices to play the same encrypted media files.</p>
 <p>CMAF specifies how to encode Switching Sets of Tracks from the same source content at different bitrates, resolutions, and frame rates so that a player can seamlessly switch between Tracks in a Switching Set during playback to adapt to current network and playback conditions. CMAF also specifies how to group Switching Sets containing alternative audio, video, and subtitle versions into Selection Sets. A player or user can make a selection from each Selection Set for synchronized multimedia playback. Selection Sets also allow each player to customize the Presentation to match device capabilities and user preferences, e.g. selecting the preferred audio language from several in a Selection Set.</p>
-<!--/section-->
+</section>
 <section>
 <h2>Scope</h2>
 <section>
@@ -2612,7 +2613,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>The mandatory subtitle format is VTT in the profiles defined in ‎Annex A. ; other formats, including TTML and SEI messages, may also be offered. The Timed Text Working Group of the W3C has provided a Note on how to map subtitles between the TTML and WebVTT formats. The note can be found here: <a href="https://dvcs.w3.org/hg/ttml/raw-file/tip/ttml-webvtt-mapping/mappingbetweenTTMLandWebVTTW3C.html"><em>https://dvcs.w3.org/hg/ttml/raw-file/tip/ttml-webvtt-mapping/mappingbetweenTTMLandWebVTTW3C.html</em></a> .</p>
 </section>
 </section>
-<section>
+<section class="appendix">
 <h2>CMAF Presentation and Media Profiles</h2>
 <section>
 <h3>CMAF Presentation Profiles</h3>
