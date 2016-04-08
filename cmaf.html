@@ -2,106 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="pandoc.css">
+  <link rel="stylesheet" href="cmaf.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<nav id="TOC">
-<ul>
-<li><a href="#introduction"><span id="OLE_LINK3" class="anchor"><span id="OLE_LINK4" class="anchor"><span id="_Toc305235529" class="anchor"><span id="_Toc435203080" class="anchor"><span id="_Toc435203206" class="anchor"><span id="_Toc447627884" class="anchor"></span></span></span></span></span></span>Introduction</a><ul>
-<li><a href="#scope-within-the-application-model"><span id="_Toc305235533" class="anchor"><span id="_Toc435203083" class="anchor"><span id="_Toc435203209" class="anchor"><span id="_Toc447627887" class="anchor"></span></span></span></span>Scope within the Application Model</a></li>
-</ul></li>
-<li><a href="#normative-references"><span id="_Toc417235410" class="anchor"><span id="_Toc417460762" class="anchor"><span id="_Toc417235411" class="anchor"><span id="_Toc417460763" class="anchor"><span id="_Toc305235534" class="anchor"><span id="_Toc435203084" class="anchor"><span id="_Toc435203210" class="anchor"><span id="_Toc435625178" class="anchor"><span id="_Toc447627888" class="anchor"></span></span></span></span></span></span></span></span></span>Normative references</a><ul>
-<li><a href="#abbreviations-and-acronyms"><span id="_Toc305235538" class="anchor"><span id="_Toc435203088" class="anchor"><span id="_Toc435203214" class="anchor"><span id="_Toc447627891" class="anchor"></span></span></span></span>Abbreviations and Acronyms</a></li>
-</ul></li>
-<li><a href="#document-organization"><span id="_Ref416516273" class="anchor"><span id="_Ref416516392" class="anchor"><span id="_Ref416516404" class="anchor"><span id="_Ref416516453" class="anchor"><span id="_Ref416516499" class="anchor"><span id="_Ref416516514" class="anchor"><span id="_Ref416516593" class="anchor"><span id="_Ref416516603" class="anchor"><span id="_Toc406513145" class="anchor"><span id="_Toc406513343" class="anchor"><span id="_Toc410717687" class="anchor"><span id="_Toc416424702" class="anchor"><span id="_Toc416429511" class="anchor"><span id="_Toc416430255" class="anchor"><span id="_Toc416430993" class="anchor"><span id="_Toc416431737" class="anchor"><span id="_Toc406513155" class="anchor"><span id="_Toc406513353" class="anchor"><span id="_Toc410717697" class="anchor"><span id="_Toc416424712" class="anchor"><span id="_Toc416429521" class="anchor"><span id="_Toc416430265" class="anchor"><span id="_Toc416431003" class="anchor"><span id="_Toc416431747" class="anchor"><span id="_Toc406513161" class="anchor"><span id="_Toc406513359" class="anchor"><span id="_Toc410717703" class="anchor"><span id="_Toc416424718" class="anchor"><span id="_Toc416429527" class="anchor"><span id="_Toc416430271" class="anchor"><span id="_Toc416431009" class="anchor"><span id="_Toc416431753" class="anchor"><span id="_Toc305235539" class="anchor"><span id="_Ref431830642" class="anchor"><span id="_Ref431916644" class="anchor"><span id="_Toc435203089" class="anchor"><span id="_Toc435203215" class="anchor"><span id="_Toc447627892" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Document Organization</a></li>
-<li><a href="#document-notation-and-conventions">Document Notation and Conventions</a><ul>
-<li><a href="#media-object-model">Media Object Model</a></li>
-<li><a href="#cmaf-tracks"><span id="_Toc435203092" class="anchor"><span id="_Toc435203218" class="anchor"><span id="_Ref305851806" class="anchor"><span id="_Ref442775206" class="anchor"><span id="_Toc447627899" class="anchor"></span></span></span></span></span>CMAF Tracks</a></li>
-<li><a href="#cmaf-track-files"><span id="_Toc447526140" class="anchor"><span id="_Toc447529115" class="anchor"><span id="_Toc447529310" class="anchor"><span id="_Toc447530470" class="anchor"><span id="_Toc447526142" class="anchor"><span id="_Toc447529117" class="anchor"><span id="_Toc447529312" class="anchor"><span id="_Toc447530472" class="anchor"><span id="_Toc447526143" class="anchor"><span id="_Toc447529118" class="anchor"><span id="_Toc447529313" class="anchor"><span id="_Toc447530473" class="anchor"><span id="_Toc447526144" class="anchor"><span id="_Toc447529119" class="anchor"><span id="_Toc447529314" class="anchor"><span id="_Toc447530474" class="anchor"><span id="_Toc447526145" class="anchor"><span id="_Toc447529120" class="anchor"><span id="_Toc447529315" class="anchor"><span id="_Toc447530475" class="anchor"><span id="_Toc447526146" class="anchor"><span id="_Toc447529121" class="anchor"><span id="_Toc447529316" class="anchor"><span id="_Toc447530476" class="anchor"><span id="_Toc447526147" class="anchor"><span id="_Toc447529122" class="anchor"><span id="_Toc447529317" class="anchor"><span id="_Toc447530477" class="anchor"><span id="_Toc447526148" class="anchor"><span id="_Toc447529123" class="anchor"><span id="_Toc447529318" class="anchor"><span id="_Toc447530478" class="anchor"><span id="_Toc447526149" class="anchor"><span id="_Toc447529124" class="anchor"><span id="_Toc447529319" class="anchor"><span id="_Toc447530479" class="anchor"><span id="_Toc447627900" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>CMAF Track Files</a></li>
-<li><a href="#cmaf-track-selection-sets-and-late-binding"><span id="_Toc447530490" class="anchor"><span id="_Toc447530491" class="anchor"><span id="_Ref305852137" class="anchor"><span id="_Toc435203094" class="anchor"><span id="_Toc435203220" class="anchor"><span id="_Toc447627902" class="anchor"></span></span></span></span></span></span>CMAF Track Selection Sets and Late Binding</a></li>
-<li><a href="#cmaf-presentation-and-timing-model"><span id="_Ref305852513" class="anchor"><span id="_Toc435203095" class="anchor"><span id="_Toc435203221" class="anchor"><span id="_Toc447627903" class="anchor"></span></span></span></span>CMAF Presentation and Timing Model</a></li>
-<li><a href="#manifest"><span id="_Toc447627904" class="anchor"><span id="_Ref447635999" class="anchor"></span></span>Manifest</a></li>
-<li><a href="#cmaf-brands"><span id="_Toc447627910" class="anchor"><span id="_Ref447628159" class="anchor"></span></span>CMAF Brands</a><ul>
-<li><a href="#cmaf-container-structure">CMAF Container Structure</a></li>
-<li><a href="#cmaf-header-initialization-segment"><span id="_Ref447527633" class="anchor"><span id="_Toc447627914" class="anchor"></span></span>CMAF Header / Initialization Segment</a></li>
-<li><a href="#cmaf-tracks-1"><span id="_Ref447526419" class="anchor"><span id="_Ref447527064" class="anchor"><span id="_Toc447627915" class="anchor"></span></span></span>CMAF Tracks</a></li>
-<li><a href="#cmaf-segments-1"><span id="_Toc447526173" class="anchor"><span id="_Toc447529147" class="anchor"><span id="_Toc447529342" class="anchor"><span id="_Toc447530506" class="anchor"><span id="_Toc447526174" class="anchor"><span id="_Toc447529148" class="anchor"><span id="_Toc447529343" class="anchor"><span id="_Toc447530507" class="anchor"><span id="_Toc447526175" class="anchor"><span id="_Toc447529149" class="anchor"><span id="_Toc447529344" class="anchor"><span id="_Toc447530508" class="anchor"><span id="_Toc447526176" class="anchor"><span id="_Toc447529150" class="anchor"><span id="_Toc447529345" class="anchor"><span id="_Toc447530509" class="anchor"><span id="_Toc447627917" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>CMAF Segments</a></li>
-<li><a href="#cmaf-low-latency-delivery-chunks"><span id="_Toc447526179" class="anchor"><span id="_Toc447529153" class="anchor"><span id="_Toc447529348" class="anchor"><span id="_Toc447530512" class="anchor"><span id="_Toc447526180" class="anchor"><span id="_Toc447529154" class="anchor"><span id="_Toc447529349" class="anchor"><span id="_Toc447530513" class="anchor"><span id="_Toc447526181" class="anchor"><span id="_Toc447526316" class="anchor"><span id="_Toc447529155" class="anchor"><span id="_Toc447529350" class="anchor"><span id="_Toc447530514" class="anchor"><span id="_Toc447526183" class="anchor"><span id="_Toc447529157" class="anchor"><span id="_Toc447529352" class="anchor"><span id="_Toc447530516" class="anchor"><span id="_Toc447526184" class="anchor"><span id="_Toc447529158" class="anchor"><span id="_Toc447529353" class="anchor"><span id="_Toc447530517" class="anchor"><span id="_Toc447526185" class="anchor"><span id="_Toc447529159" class="anchor"><span id="_Toc447529354" class="anchor"><span id="_Toc447530518" class="anchor"><span id="_Ref447526475" class="anchor"><span id="_Ref447527671" class="anchor"><span id="_Toc447627918" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>CMAF Low Latency Delivery Chunks</a></li>
-<li><a href="#cmaf-switching-sets"><span id="_Ref447579183" class="anchor"><span id="_Toc447627919" class="anchor"></span></span>CMAF Switching Sets</a></li>
-<li><a href="#cmaf-selection-sets">CMAF Selection Sets</a></li>
-<li><a href="#cmaf-presentations">CMAF Presentations</a></li>
-<li><a href="#track-encryption-box-tenc"><span id="_Toc447526193" class="anchor"><span id="_Toc447529168" class="anchor"><span id="_Toc447529363" class="anchor"><span id="_Toc447530527" class="anchor"><span id="_Toc447526196" class="anchor"><span id="_Toc447529171" class="anchor"><span id="_Toc447529366" class="anchor"><span id="_Toc447530530" class="anchor"><span id="_Toc447526197" class="anchor"><span id="_Toc447529172" class="anchor"><span id="_Toc447529367" class="anchor"><span id="_Toc447530531" class="anchor"><span id="_Toc447526199" class="anchor"><span id="_Toc447529174" class="anchor"><span id="_Toc447529369" class="anchor"><span id="_Toc447530533" class="anchor"><span id="_Toc447526200" class="anchor"><span id="_Toc447529175" class="anchor"><span id="_Toc447529370" class="anchor"><span id="_Toc447530534" class="anchor"><span id="_Toc447526203" class="anchor"><span id="_Toc447529178" class="anchor"><span id="_Toc447529373" class="anchor"><span id="_Toc447530537" class="anchor"><span id="_Ref447440957" class="anchor"><span id="_Toc447627924" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>Track Encryption Box (‘tenc’)</a></li>
-<li><a href="#event-message-box-emsg"><span id="_Ref447473897" class="anchor"><span id="_Toc447627925" class="anchor"></span></span>Event Message Box (‘emsg’)</a></li>
-<li><a href="#movie-header-box-mvhd"><span id="_Ref447527019" class="anchor"><span id="_Toc447627928" class="anchor"></span></span>Movie Header Box (‘mvhd’) </a></li>
-<li><a href="#handler-reference-box-hdlr-for-file-metadata">Handler Reference Box (‘hdlr’) for File Metadata </a></li>
-<li><a href="#xml-metadata">XML Metadata</a></li>
-<li><a href="#kind-box-kind"><span id="_Ref447582080" class="anchor"><span id="_Toc447627931" class="anchor"></span></span>Kind Box (‘kind’)</a></li>
-<li><a href="#track-header-box-tkhd"><span id="_Toc447530547" class="anchor"><span id="_Toc447526212" class="anchor"><span id="_Toc447529188" class="anchor"><span id="_Toc447529383" class="anchor"><span id="_Toc447530590" class="anchor"><span id="_Toc447627932" class="anchor"></span></span></span></span></span></span>Track Header Box (‘tkhd’)</a></li>
-<li><a href="#data-reference-box-dref"><span id="_Ref447526651" class="anchor"><span id="_Toc447627936" class="anchor"></span></span>Data Reference Box (‘dref’) </a></li>
-<li><a href="#track-sample-boxes"><span id="_Ref447526739" class="anchor"><span id="_Toc447627939" class="anchor"></span></span>Track Sample Boxes</a></li>
-<li><a href="#track-edit-list-box-elst"><span id="_Ref447471339" class="anchor"><span id="_Toc447627940" class="anchor"></span></span>Track Edit List Box (‘elst’)</a></li>
-<li><a href="#track-extends-box-trex"><span id="_Ref447527707" class="anchor"><span id="_Toc447627941" class="anchor"></span></span>Track Extends Box (‘trex’)</a></li>
-<li><a href="#movie-fragment-header-box-mfhd">Movie Fragment Header Box (‘mfhd’)</a></li>
-<li><a href="#track-fragment-run-box-trun"><span id="_Ref447526814" class="anchor"><span id="_Ref447526817" class="anchor"><span id="_Toc447627944" class="anchor"></span></span></span>Track Fragment Run Box (‘trun’)</a></li>
-<li><a href="#media-data-box-mdat.">Media Data Box (‘mdat’).</a></li>
-<li><a href="#the-following-additional-constraints-shall-be-applied-to-all-encrypted-tracks"><span id="_The_following_additional" class="anchor"><span id="_Ref443502224" class="anchor"><span id="_Toc447627951" class="anchor"></span></span></span>The following additional constraints SHALL be applied to all encrypted tracks:</a></li>
-<li><a href="#track-header-box-tkhd-1"><span id="_Ref262718698" class="anchor"><span id="_Toc276405638" class="anchor"><span id="_Toc417535013" class="anchor"><span id="_Toc302846753" class="anchor"><span id="_Toc435203138" class="anchor"><span id="_Toc435203264" class="anchor"><span id="_Toc447627958" class="anchor"></span></span></span></span></span></span></span>Track Header Box (‘tkhd’)</a></li>
-<li><a href="#picture-access-units"><span id="_Ref442775704" class="anchor"><span id="_Toc447627960" class="anchor"></span></span>Picture Access Units</a></li>
-<li><a href="#sync-samples"><span id="_Toc435203141" class="anchor"><span id="_Toc435203267" class="anchor"><span id="_Toc447627961" class="anchor"></span></span></span>Sync Samples</a></li>
-<li><a href="#hevc-signaling-of-codecs-parameters-informational"><span id="_Toc302846768" class="anchor"><span id="_Toc435203150" class="anchor"><span id="_Toc435203276" class="anchor"><span id="_Toc447627970" class="anchor"></span></span></span></span>HEVC signaling of “codecs” parameters (Informational)</a></li>
-<li><a href="#encoding-overview"><span id="_Toc302846770" class="anchor"><span id="_Toc435203151" class="anchor"><span id="_Toc435203277" class="anchor"><span id="_Toc447627971" class="anchor"></span></span></span></span>Encoding Overview</a></li>
-<li><a href="#video-color-and-dynamic-range-mastering"><span id="_Toc302846771" class="anchor"><span id="_Toc435203152" class="anchor"><span id="_Toc435203278" class="anchor"><span id="_Toc447627972" class="anchor"></span></span></span></span>Video color and dynamic range mastering</a></li>
-<li><a href="#signaling-the-presence-of-cea-608708-in-sei-messages">Signaling the presence of CEA-608/708 in SEI messages</a></li>
-<li><a href="#cea-608708-in-sei-messages"><span id="_Toc435203155" class="anchor"><span id="_Toc435203281" class="anchor"><span id="_Toc447627976" class="anchor"></span></span></span>CEA-608/708 in SEI messages</a></li>
-</ul></li>
-<li><a href="#general-requirements-for-cmaf-compatible-audio-media-profiles">General Requirements for CMAF Compatible Audio Media Profiles</a><ul>
-<li><a href="#track-header-box-tkhd-2"><span id="_Toc276405658" class="anchor"><span id="_Toc302846784" class="anchor"><span id="_Toc435203160" class="anchor"><span id="_Toc435203286" class="anchor"><span id="_Toc447627982" class="anchor"></span></span></span></span></span>Track Header Box (‘tkhd’)</a></li>
-<li><a href="#shared-elements-of-audiosampleentry"><span id="_Toc276405664" class="anchor"><span id="_Toc302846790" class="anchor"><span id="_Toc435203177" class="anchor"><span id="_Toc435203303" class="anchor"><span id="_Toc447627987" class="anchor"></span></span></span></span></span>Shared elements of AudioSampleEntry</a></li>
-<li><a href="#general-considerations-for-aac-audio-encoding"><span id="_Toc308174938" class="anchor"><span id="_Toc276405666" class="anchor"><span id="_Toc302846793" class="anchor"><span id="_Toc435203180" class="anchor"><span id="_Toc435203306" class="anchor"><span id="_Toc447627990" class="anchor"></span></span></span></span></span></span>General Considerations for AAC Audio Encoding</a></li>
-</ul></li>
-<li><a href="#webvtt">WebVTT</a></li>
-<li><a href="#ttml">TTML</a></li>
-<li><a href="#cea-608-and-cea-708"><span id="_Toc302846799" class="anchor"><span id="_Toc435203188" class="anchor"><span id="_Toc435203314" class="anchor"><span id="_Toc447627999" class="anchor"></span></span></span></span>CEA-608 and CEA-708</a></li>
-<li><a href="#metadata-for-subtitles">Metadata for Subtitles</a></li>
-<li><a href="#translating-subtitles-from-other-formats"><span id="_Toc447526284" class="anchor"><span id="_Toc447529259" class="anchor"><span id="_Toc447529454" class="anchor"><span id="_Toc447530661" class="anchor"><span id="_Toc447526285" class="anchor"><span id="_Toc447529260" class="anchor"><span id="_Toc447529455" class="anchor"><span id="_Toc447530662" class="anchor"><span id="_Toc302846803" class="anchor"><span id="_Toc435203191" class="anchor"><span id="_Toc435203317" class="anchor"><span id="_Toc447628001" class="anchor"></span></span></span></span></span></span></span></span></span></span></span></span>Translating Subtitles from Other Formats</a></li>
-</ul></li>
-</ul>
-</nav>
-<p><span id="OLE_LINK24" class="anchor"><span id="OLE_LINK23" class="anchor"></span></span></p>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<h1 id="introduction" class="ListParagraph"><span id="OLE_LINK3" class="anchor"><span id="OLE_LINK4" class="anchor"><span id="_Toc305235529" class="anchor"><span id="_Toc435203080" class="anchor"><span id="_Toc435203206" class="anchor"><span id="_Toc447627884" class="anchor"></span></span></span></span></span></span>Introduction</h1>
+<h1 id="introduction" class="ListParagraph"></span>Introduction</h1>
 <p>The Common Media Application Format (CMAF) is a Media Application Format that specifies how to use the ISO Base Media File Format and other MPEG standards to package media for segmented delivery. It is optimized for efficient adaptive playback of a single presentation containing encoded and encrypted Tracks by a wide range of devices over the Internet, using a variety of delivery methods.</p>
 <p>The Common Media Application Format is intended to improve the efficiency of large-scale video distribution over the Internet and improve device compatibility for all delivery methods. It seeks to address the current situation where the same video has to be encoded in several different formats that multiply the network storage and bandwidth consumed, and complicate device compatibility by requiring support for multiple media formats that are intended to produce the same video presentation.</p>
 <p>The Common Media Application Format describes how to construct a multimedia presentation in a series of small media objects called Segments. These objects, even when produced during live presentation, can be transferred using common file-based delivery protocols – as well as more specialized methods such as multicast and peer-to-peer – and then reassembled and played back by a player.</p>
@@ -414,7 +324,7 @@
 <p>A Manifest is included in the application model to describe media objects as Presentations and enable playback (see Figure <strong>1</strong>) , but the specific implementation of the Manifest is beyond the scope of this specification. The same media objects may be described by multiple manifest formats, and may be combined with different media objects in different Presentations using different Manifests. Reuse of the same media objects in different Presentations and Manifests greatly improves encoding, storage and delivery efficiency.</p>
 <p>It is possible to organize Presentations in sequences and other relationships referred to in this specification as a Composition. Composition examples include a sequence of programs and advertisements in a channel, an ad presentation that overlays a program presentation, a programmatic selection of a sequence of Manifests, manual selection of Presentations from a menu, etc. CMAF defines the encoding and organization of Segments and Tracks within each Presentation, but does not define or constrain the Composition of multiple Presentations.</p>
 <p>Subsections of Section ‎6 describe the important constraints on these media objects. Subsequent Sections of CMAF specify the container and track formats in detail.</p>
-<p><img src="media/image1.png" width="620" height="400" /></p>
+<p><img src="media/cmaf-media-object-model.png" width="620" height="400" /></p>
 <p><span id="_Ref432004518" class="anchor"><span id="_Toc447628025" class="anchor"></span></span>Figure 1 - CMAF Media Object Model</p>
 <ol type="1">
 <li><h3 id="cmaf-fragments-segments-and-chunks"><span id="_Ref305851390" class="anchor"><span id="_Toc435203091" class="anchor"><span id="_Toc435203217" class="anchor"><span id="_Toc447627898" class="anchor"></span></span></span></span>CMAF Fragments, Segments, and Chunks</h3>
@@ -475,7 +385,7 @@
 <p>The description of Selection Sets in a Manifest is not specified by the CMAF specification, however each Manifest format is expected to provide sufficient information to enable Players to automatically select optimal CMAF Track Switching Sets from CMAF Selection Sets.</p>
 <h3 id="cmaf-presentation-and-timing-model"><span id="_Ref305852513" class="anchor"><span id="_Toc435203095" class="anchor"><span id="_Toc435203221" class="anchor"><span id="_Toc447627903" class="anchor"></span></span></span></span>CMAF Presentation and Timing Model</h3>
 <p>A CMAF Presentation is a group of one or more synchronized Selection Sets that are intended for simultaneous presentation. There is typically one Selection Set for each media type (audio, video, or subtitles), which may contain only one Switching Set if no alternative content is available.</p>
-<p><img src="media/image2.png" width="624" height="350" />A CMAF Presentation may contain more than one Selection Set of a particular media type to indicate that one CMAF Track from each Selection Set SHOULD be presented at the same time. For instance, separate Selection Sets for audio background sound and audio dialog would indicated one of each type are intended to be decoded and mixed for in a Presentation. Similarly, separate video Selection Sets could be used to indicate two video Tracks that are intended to be decoded and presented simultaneously as picture in picture, or picture on picture, etc.</p>
+<p><img src="media/cmaf-timeline-synchronization-model.png" width="624" height="350" />A CMAF Presentation may contain more than one Selection Set of a particular media type to indicate that one CMAF Track from each Selection Set SHOULD be presented at the same time. For instance, separate Selection Sets for audio background sound and audio dialog would indicated one of each type are intended to be decoded and mixed for in a Presentation. Similarly, separate video Selection Sets could be used to indicate two video Tracks that are intended to be decoded and presented simultaneously as picture in picture, or picture on picture, etc.</p>
 <p>Note that ISO Base Media video tracks have both a decode timeline and a composition timeline.</p>
 <p>There are multiple timelines involved in synchronizing a CMAF Presentation. Each timeline has a timescale in units per second, and an origin where the measure equals zero.</p>
 <ol type="1">
@@ -1206,7 +1116,7 @@ stz2</td>
 <p>The Movie Box shall contain a Movie Extends Box (‘mvex’), as defined in Section 8.8.1 of [<a href="#ISOMREF"><em>ISOM</em></a>], to indicate that the container contains Movie Fragment Boxes.</p>
 </blockquote></li>
 </ul>
-<p><img src="media/image3.png" width="475" height="301" /></p>
+<p><img src="media/cmaf-header-box-sequence-structure.png" width="475" height="301" /></p>
 <p><span id="_Ref447526921" class="anchor"><span id="_Toc447628026" class="anchor"></span></span>Figure 2 – (Informational) CMAF header box sequence and structure</p>
 <ul>
 <li><blockquote>
@@ -1261,7 +1171,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 </ol>
 <p>Note: Each Event Message Box (‘emsg’) contains a schemeIdUri that functions as a URN message scheme identifier, and defines the payload of the message. Some schemes such as urn:scte:scte35 are standardized by SDOs and consortia for interoperability, in this case, ad and program segmentation splicing and signaling. But, any application provider can define its own scheme using a URL they control, and may locate a specification at that URL if they choose. Possible uses include delivering sports scores, interactive components, presentation chaining, server redirection, sparse content description metadata, etc. Delivering a simple URL allows a server to decide what to download (if anything) based on the player, device, location, time of the request, etc. If a player has a handler for the scheme, that is the only component that needs to understand the payload and protocol. Message parsing and routing is generic.</p>
 <p>Figure 3 illustrates the box sequence and containment of a CMAF Fragment.</p>
-<p><img src="media/image4.png" width="699" height="370" /></p>
+<p><img src="media/cmaf-fragment-box-sequence-and-containment.png" width="699" height="370" /></p>
 <p><span id="_Ref447527229" class="anchor"><span id="_Toc447628027" class="anchor"></span></span>Figure 3 – (Informational) CMAF Fragment box sequence and containment</p>
 <blockquote>
 <p>NOTE Bottom row indicate containment in the ‘traf’ box above. The sequence is only recommended. The presence of the Protection Specific Header Box in the Movie Fragment is optional, and typically only used for the delivery of chained licenses or “key rotation”. The Producer Reference Time Box (‘prft’), Segment Type Box (‘styp’), and Event Message Box (‘emsg’) are optional.</p>
@@ -2281,7 +2191,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Files SHALL indicate that initial added audio be removed, by using an edit list, as specified in Section‎7.5.14.</p>
 <p>The pre-roll sample group SHOULD be used to indicate that to get the correct audio out of any frame one must pass the previous frame to the decoder and discard the resulting output.</p>
 <p>Figure 4 illustrates an AAC bit-stream, both encoded and framed in Access Units in a track.</p>
-<p><embed src="media/image5.wmf" width="578" height="242" /></p>
+<p><img src="media/example-aac-access-units.png" width="578" height="242" /></p>
 <p><span id="_Ref416538911" class="anchor"><span id="_Toc447628028" class="anchor"></span></span>Figure 4 - Example of AAC Access Units</p>
 <p>In Figure 5, the enclosed numbers indicate which input blocks are used for prediction and encoding in an encoded frame; for example, [1,2] indicates that block 2 is predicted from frame 1. The source block labelled “Dummy” is audio or silence encoded to output block 5, but is not included in the coded stream in the Track. The letter N indicates encoded silence in the last frame. The last audio frame MAY contain silence if the audio source ends prior to the frame boundary.</p>
 <p>The audio stream SHOULD contain DRC and loudness metadata according to [AAC]. The audio encoder SHOULD set the Program Reference Level to the loudness level of the audio stream. The audio decoder SHALL use the Program Reference Level, if available, to achieve a desired target loudness, if applicable. The audio encoder SHOULD generate DRC metadata for light compression encoded in the dyn_rng_ctl and dyn_rng_sgn fields of dynamic_range_info() in the FIL element and DRC metadata for heavy compression in the compression_value field of MPEG4_ancillary_data() in the DSE (data stream element). The audio decoder SHALL apply the DRC metadata, if present, according to [AAC] Amendment 4 including the DRC Presentation Mode value of the drc_presentation_mode field.</p>
@@ -3195,20 +3105,20 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <li><p><span id="_Toc447628021" class="anchor"></span>16x9 Aspect Ratio HD and SD</p></li>
 </ol></li>
 </ol>
-<p><embed src="media/image6.emf" width="623" height="556" /></p>
+<p><img src="media/16x9-aspect-ratio-hd-sd.png" width="623" height="556" /></p>
 <ol type="1">
 <li><p><span id="_Toc447529288" class="anchor"><span id="_Toc447529483" class="anchor"><span id="_Toc447530690" class="anchor"></span></span></span><br />
 <span id="_Toc447628022" class="anchor"></span>2.4 Aspect Ratio HD and SD</p></li>
 </ol>
-<p><embed src="media/image7.emf" width="624" height="532" /></p>
+<p><img src="media/2-4-aspect-ratio-hd-sd.png" width="624" height="532" /></p>
 <ol type="1">
 <li><p><span id="_Toc447628023" class="anchor"></span>4x3 Aspect Ratio 1080 Line Source</p></li>
 </ol>
-<p><embed src="media/image8.emf" width="624" height="526" /></p>
+<p><img src="media/4x3-aspect-ratio-1080-line-source.png" width="624" height="526" /></p>
 <ol type="1">
 <li><p><span id="_Toc447529291" class="anchor"><span id="_Toc447529486" class="anchor"><span id="_Toc447530693" class="anchor"></span></span></span><br />
 <span id="_Toc447628024" class="anchor"></span>60Hz from 1280x720p60 Source</p></li>
 </ol>
-<p><embed src="media/image9.emf" width="623" height="470" /></p>
+<p><img src="media/60hz-1280x720p60-source.png" width="623" height="470" /></p>
 </body>
 </html>
