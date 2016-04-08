@@ -2792,6 +2792,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </ol></li>
 </ul>
 <p>The following example shows a typical movie picture aspect ratio that was padded and encoded with letterbox bars to fit a 16:9 TV display. The active image is extracted, subsampled, encoded, and partially filled macroblocks indicated by cropping parameters. AVC and HEVC parameters for the example are detailed in the figure that follows.</p>
+<p><img src="media/letterboxed-content-encoding-process.png"></p>
 <p><span id="_Ref438473281" class="anchor"><span id="_Toc435203684" class="anchor"><span id="_Toc447628029" class="anchor"></span></span></span>Figure 5 - Example of encoding process of letterboxed source content</p>
 <p>Figure 5 shows an example of the encoding process that can be applied. Table 8 shows the parameter values that could be used.</p>
 <p><span id="_Ref438473352" class="anchor"><span id="_Toc438473886" class="anchor"></span></span>Table 8 – Example sub-sample and cropping values for Figure 5</p>
@@ -2939,8 +2940,10 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Note 1: as chroma_format_idc is 1, SubWidthC and SubWidthC are set to 2 per [H264] and [H265]. This results in a doubling of frame crop parameters (so frame_crop_bottom_offset and conf_win_bottom_offset both equate to 14 pixels in the above example).</p>
 <p>Note 2: As [H265] MinCbSizeY is 16 and log2_min_luma_coding_block_size_minus3 is 1, the Coding Tree Unit size is 16x16 (matching the [H264] macroblock size of 16x16).</p>
 <p>The decoding and display process for this content is illustrated in Figure 6, below. In this example, the decoded picture dimensions are 1440 x 818, one line larger than the original active picture area. This is due to a limitation in the cropping parameters to crop only even pairs of lines. Note: 816 lines or 51 macroblocks might be more practical, but makes a less informative example.</p>
+<p><img src="media/letterboxed-content-display-process.png"></p>
 <p><span id="_Ref438473427" class="anchor"><span id="_Toc435203685" class="anchor"><span id="_Toc447628030" class="anchor"></span></span></span>Figure 6 – Example of display process for letterboxed source content</p>
 <p>Figure 7, below, illustrates what might happen when both sub-sampling and cropping are working in the same horizontal dimension. The original source picture content is first sub-sampled horizontally from a 1:1 sample aspect ratio at 1920 x 1080 to a sample aspect ratio of 4:3 at 1440 x 1080, then the 1080 x 1080-pixel active picture area of the sub-sampled image is encoded. However, the actual coded samples have a size of 1088 x 1088 samples due to the coding unit boundaries falling on even multiples of 16 pixels in this example - therefore, additional cropping parameters are provided in both horizontal and vertical dimensions.</p>
+<p><img src="media/pillarboxed-content-encoding-process.png"></p>
 <p><span id="_Ref438473471" class="anchor"><span id="_Toc435203686" class="anchor"><span id="_Toc447628031" class="anchor"></span></span></span>Figure 7 - Example of encoding process for pillarboxed source content</p>
 <p>Table 9 lists the various parameters that might appear in the resulting file for this sample content.</p>
 <p><span id="_Ref438473494" class="anchor"><span id="_Toc438473887" class="anchor"></span></span>Table 9 – Example sub-sample and cropping values for Figure 7</p>
@@ -3088,6 +3091,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Note 1: as chroma_format_idc is 1, SubWidthC and SubWidthC are set to 2 per [H264] and [H265]. This results in a doubling of frame crop parameters (so frame_crop_bottom_offset and conf_win_bottom_offset both equate to 14 pixels in the above example).</p>
 <p>Note 2: As [H265] MinCbSizeY is 16 and log2_min_luma_coding_block_size_minus3 is 1, the Coding Tree Unit size is 16x16 (matching the [H264] macroblock size of 16x16).</p>
 <p>The process for reconstructing the video for display is shown in Figure 8. As in the previous example, the decoded picture is required to be scaled back up to the original 1:1 sample aspect ratio.</p>
+<p><img src="media/pillarboxed-content-display-process.png"></p>
 <p><span id="_Ref438473615" class="anchor"><span id="_Toc435203687" class="anchor"><span id="_Toc447628032" class="anchor"></span></span></span>Figure 8 – example of display process for pillarboxed source content</p>
 <p>If this content was to be displayed on a 4:3 television or other 4:3 display, no further processing of the image would be necessary. However, if this content was to be displayed on a 16:9 HDTV, it might be necessary for it to apply additional matting on the left and right sides to reconstruct the original pillarboxes in order to ensure the video image displays properly. Or, a user might elect to zoom the image to full width and crop the top and bottom. Standard procedure for most TV programs shot on 1.85 aspect ratio film is to “protect” the 1.78 aspect ratio area (16:9) so that the top and bottom can be cropped when displayed full width on HDTVs without loss of significant content.</p>
 <ol type="1">
