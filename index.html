@@ -336,7 +336,7 @@
 <p>A Manifest is included in the application model to describe media objects as Presentations and enable playback (see Figure 1) , but the specific implementation of the Manifest is beyond the scope of this specification. The same media objects may be described by multiple manifest formats, and may be combined with different media objects in different Presentations using different Manifests. Reuse of the same media objects in different Presentations and Manifests greatly improves encoding, storage and delivery efficiency.</p>
 <p>It is possible to organize Presentations in sequences and other relationships referred to in this specification as a Composition. Composition examples include a sequence of programs and advertisements in a channel, an ad presentation that overlays a program presentation, a programmatic selection of a sequence of Manifests, manual selection of Presentations from a menu, etc. CMAF defines the encoding and organization of Segments and Tracks within each Presentation, but does not define or constrain the Composition of multiple Presentations.</p>
 <p>Subsections of Section ‎6 describe the important constraints on these media objects. Subsequent Sections of CMAF specify the container and track formats in detail.</p>
-<p><img src="media/cmaf-media-object-model.png" width="620" height="400" /></p>
+<p><img src="media/cmaf-media-object-model.png" width="620" height="400" alt="CMAF media object model" /></p>
 <p><span id="_Ref432004518" class="anchor"><span id="_Toc447628025" class="anchor"></span></span>Figure 1 - CMAF Media Object Model</p>
 </section>
 <section>
@@ -413,7 +413,7 @@
 <section>
 <h3 id="cmaf-presentation-and-timing-model">CMAF Presentation and Timing Model</h3>
 <p>A CMAF Presentation is a group of one or more synchronized Selection Sets that are intended for simultaneous presentation. There is typically one Selection Set for each media type (audio, video, or subtitles), which may contain only one Switching Set if no alternative content is available.</p>
-<p><img src="media/cmaf-timeline-synchronization-model.png" width="624" height="350" />A CMAF Presentation may contain more than one Selection Set of a particular media type to indicate that one CMAF Track from each Selection Set SHOULD be presented at the same time. For instance, separate Selection Sets for audio background sound and audio dialog would indicated one of each type are intended to be decoded and mixed for in a Presentation. Similarly, separate video Selection Sets could be used to indicate two video Tracks that are intended to be decoded and presented simultaneously as picture in picture, or picture on picture, etc.</p>
+<p><img src="media/cmaf-timeline-synchronization-model.png" width="624" height="350" alt="CMAF timeline synchronization model" />A CMAF Presentation may contain more than one Selection Set of a particular media type to indicate that one CMAF Track from each Selection Set SHOULD be presented at the same time. For instance, separate Selection Sets for audio background sound and audio dialog would indicated one of each type are intended to be decoded and mixed for in a Presentation. Similarly, separate video Selection Sets could be used to indicate two video Tracks that are intended to be decoded and presented simultaneously as picture in picture, or picture on picture, etc.</p>
 <p>Note that ISO Base Media video tracks have both a decode timeline and a composition timeline.</p>
 <p>There are multiple timelines involved in synchronizing a CMAF Presentation. Each timeline has a timescale in units per second, and an origin where the measure equals zero.</p>
 <ol type="1">
@@ -474,7 +474,8 @@
 </blockquote></li>
 <li><blockquote>
 <p>The 'emsg' box allows Segments to signal application-defined Track events with low latency during live presentations without requiring frequent Manifest downloads.</p>
-</blockquote>
+</blockquote></li>
+</ul>
 </section>
 <section>
 <h3 id="adaptive-streaming-playback-informative">Adaptive Streaming Playback (Informative)</h3>
@@ -494,7 +495,7 @@
 </section>
 </section>
 <section>
-<h1 id="the-common-media-application-format-container">The Common Media Application Format Container</h1>
+<h2 id="the-common-media-application-format-container">The Common Media Application Format Container</h2>
 <section>
 <h2 id="introduction-3">Introduction</h2>
 <p>The Common Media Application Format Container is derived from the ISO Base Media File Format, and is primarily a profile of that format.</p>
@@ -1150,7 +1151,7 @@ stz2</td>
 <p>The Movie Box shall contain a Movie Extends Box (‘mvex’), as defined in Section 8.8.1 of [<a href="#ISOMREF"><em>ISOM</em></a>], to indicate that the container contains Movie Fragment Boxes.</p>
 </blockquote></li>
 </ul>
-<p><img src="media/cmaf-header-box-sequence-structure.png" width="475" height="301" /></p>
+<p><img src="media/cmaf-header-box-sequence-structure.png" width="475" height="301" alt="CMAF Header Box Sequence and Structure" /></p>
 <p>Figure 2 – (Informational) CMAF header box sequence and structure</p>
 <ul>
 <li><blockquote>
@@ -1208,7 +1209,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 </ol>
 <p>Note: Each Event Message Box (‘emsg’) contains a schemeIdUri that functions as a URN message scheme identifier, and defines the payload of the message. Some schemes such as urn:scte:scte35 are standardized by SDOs and consortia for interoperability, in this case, ad and program segmentation splicing and signaling. But, any application provider can define its own scheme using a URL they control, and may locate a specification at that URL if they choose. Possible uses include delivering sports scores, interactive components, presentation chaining, server redirection, sparse content description metadata, etc. Delivering a simple URL allows a server to decide what to download (if anything) based on the player, device, location, time of the request, etc. If a player has a handler for the scheme, that is the only component that needs to understand the payload and protocol. Message parsing and routing is generic.</p>
 <p>Figure 3 illustrates the box sequence and containment of a CMAF Fragment.</p>
-<p><img src="media/cmaf-fragment-box-sequence-and-containment.png" width="699" height="370" /></p>
+<p><img src="media/cmaf-fragment-box-sequence-and-containment.png" width="699" height="370" alt="CMAF Fragment Box Sequence and Containment"/></p>
 <p>Figure 3 – (Informational) CMAF Fragment box sequence and containment</p>
 <blockquote>
 <p>NOTE Bottom row indicate containment in the ‘traf’ box above. The sequence is only recommended. The presence of the Protection Specific Header Box in the Movie Fragment is optional, and typically only used for the delivery of chained licenses or “key rotation”. The Producer Reference Time Box (‘prft’), Segment Type Box (‘styp’), and Event Message Box (‘emsg’) are optional.</p>
@@ -1403,11 +1404,11 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <li><blockquote>
 <p>For non-visual tracks (e.g. audio), width and height SHALL be set to zero.</p>
 </blockquote>
+</li>
+</ul>
 </section>
 <section>
-<h3 id="media-header-box-mdhd">Media Header Box (‘mdhd’)</h3></li>
-</ol></li>
-</ul>
+<h3 id="media-header-box-mdhd">Media Header Box (‘mdhd’)</h3>
 <p>The CMAF Media Header Boxes SHALL conform to [<a href="#ISOMREF"><em>ISOM</em></a>] Section 8.4.2 with the following additional constraints:</p>
 <ul>
 <li><blockquote>
@@ -1425,6 +1426,8 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <li><blockquote>
 <p>The Extended Language box [<a href="#ISOMREF"><em>ISOM</em></a>] 8.4.6 MAY be present.</p>
 </blockquote>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="video-media-header-vmhd">Video Media Header (‘vmhd’)</h3>
@@ -1444,9 +1447,11 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <li><blockquote>
 <p>opcolor={0, 0, 0}</p>
 </blockquote>
+</li>
+</ul>
 </section>
 <section>
-<h3 id="sound-media-header-smhd">Sound Media Header (‘smhd’) </h3></li>
+<h3 id="sound-media-header-smhd">Sound Media Header (‘smhd’) </h3>
 <p>The balance value in the sound media header SHOULD be zero (centered).</p>
 </section>
 <section>
@@ -1454,15 +1459,18 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <p>Data Reference Boxes in a CMAF Track shall conform to [<a href="#ISOMREF"><em>ISOM</em></a>] Section 8.7.2 with the following additional constraints:</p>
 <ul>
 <li><p>The Data Reference Box (‘dref’) SHALL contain a single entry with the entry_flags field set to 0x000001 (which means that the media data is in the same file as the Movie Box containing this data reference).</p>
+</li>
+</ul>
 </section>
 <section>
-<h3 id="sample-description-box-stsd">Sample Description Box (‘stsd’)</h3></li>
+<h3 id="sample-description-box-stsd">Sample Description Box (‘stsd’)</h3>
 <p>Sample Description Boxes in a CMAF Track shall conform to version 0 as defined in [<a href="#ISOMREF"><em>ISOM</em></a>] Section 8.5.2 with the following additional constraints:</p>
 <ul>
 <li><p>Sample entries for encrypted tracks (those containing any encrypted sample data) SHALL encapsulate the existing sample entry with a Protection Scheme Information Box (‘sinf’) that conforms to [<a href="https://microsoft-my.sharepoint.com/personal/johnsim_microsoft_com/Documents/CMF%20Spec/Common%20Media%20Format%20v2015.04.12.a-jcs.docx#ISOMREF"><em>ISOM</em></a>] section 8.12.1.</p></li>
 <li><p>For video tracks, a visual sample entry SHALL be used. Design rules are specified in Section ‎9.2.3.</p></li>
 <li><p>For audio tracks, an audio Sample entry SHALL be used. Design rules are specified in Section ‎10.3.6.</p></li>
-<li><p>For subtitle tracks a subtitle sample entry SHALL be used. Design rules are specified in [ISOTXT].</p>
+<li><p>For subtitle tracks a subtitle sample entry SHALL be used. Design rules are specified in [ISOTXT].</p></li>
+</ul>
 </section>
 <section>
 <h3 id="protection-scheme-information-box-sinf">Protection Scheme Information Box (‘sinf’)</h3>
@@ -1508,6 +1516,8 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <p>Movie Fragment Header Boxes (‘mfhd’) in a CMAF Track SHALL conform to [<a href="#ISOMREF"><em>ISOM</em></a>] Section 8.8.5 with the following additional constraints:</p>
 <ul>
 <li><p>The sequence_number integer field in each Movie Fragment Header Box (‘mfhd’) in a CMAF Fragment MAY be ignored. The integer values in a CMAF Track need not increase over time or be consecutive, although that is typical practice. Even if each CMAF Track in a Switching Set has consecutively numbered CMAF Fragments, the adaptively delivered CMAF Fragments might not be consecutive because they aren’t constrained to have the same sequence_number for each Fragment with the same decode time.</p>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="track-fragment-header-box-tfhd">Track Fragment Header Box (‘tfhd’)</h3>
@@ -1534,7 +1544,10 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <ul>
 <li><p>sample_is_non_sync_sample SHALL be 0 for SAP type 1 or 2, and 1 if not;</p></li>
 <li><p>sample_depends_on SHOULD be 2 for I pictures;</p></li>
-<li><p>sample_is_depended_on SHOULD be 2 for disposable pictures.</p>
+<li><p>sample_is_depended_on SHOULD be 2 for disposable pictures.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="sample-group-description-box-sgpd">Sample Group Description Box (‘sgpd’)</h3>
@@ -1551,9 +1564,9 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 </section>
 </section>
 <section>
-<h1 id="common-encryption-of-tracks">Common Encryption of Tracks</h1>
+<h2 id="common-encryption-of-tracks">Common Encryption of Tracks</h2>
 <section>
-<h2 id="multiple-drm-support-informative">Multiple DRM Support (Informative)</h2>
+<h3 id="multiple-drm-support-informative">Multiple DRM Support (Informative)</h3>
 <p>Multiple DRM systems can provide a license for an encrypted Track using Common Encryption [<a href="#CENCREF"><em>CENC</em></a>]. The default_KID identifies the key and license required, and a registered SystemID identifies a Common Encryption capable DRM system. License acquisition information can be provided to identify which DRM systems can provide licenses. License acquisition information usually includes the URL of an authorization and license server, DRM SystemID, DRM client identification, type of license requested, media key identifier, etc., and may be stored in a ‘pssh’ box, a Manifest, or an application in order to assist players in requesting a license to decrypt a Track.</p>
 <p>A single key and license may be sufficient to access all tracks in a presentation, or HD and other high value content may be required to use different keys for audio and video tracks, since the audio path may be less secure. A content provider may also require different keys and licenses for different qualities, such as SD, HD, and UHD.</p>
 <p>CMAF requires license acquisition information to be signaled only in a Manifest or application when streaming, because it allows a CMAF Player application to parse all license acquisition information in advance of playback, and download the required license(s) only once. If license acquisition information is stored in a Protection System Specific Header Box (‘pssh’ version 0) in the CMAF header, a license may be requested each time a CMAF Header is processed, e.g. for bitrate switching. If ‘pssh’ version 0 were allowed, CMAF Player application would then have to analyze each proprietary header to determine if the request was a duplicate.</p>
@@ -1648,7 +1661,8 @@ For example, version one ‘pssh’ boxes in CMAF Fragments can be used to deliv
 </blockquote></li>
 <li><blockquote>
 <p>‘cbcs’ scheme bytesOfProtectedData SHALL start on the first complete byte of video data following the slice header, and BytesOfProtectedData = size of video slice data starting from the first complete byte of video data following the slice header</p>
-</blockquote>
+</blockquote></li>
+</ul>
 <section>
 <h4 id="clear-samples-within-an-encrypted-track">Clear Samples within an Encrypted Track</h4>
 <p>In an encrypted track, the isProtected flag in the Track Encryption Box (‘tenc’) SHALL be set to 1, indicating that all samples are protected by default. Sample Groups may indicate unprotected Samples, as specified in [<a href="#CENCREF"><em>CENC</em></a>].</p>
@@ -1658,9 +1672,9 @@ For example, version one ‘pssh’ boxes in CMAF Fragments can be used to deliv
 </section>
 </section>
 <section>
-<h1 id="video-tracks">Video Tracks</h1>
+<h2 id="video-tracks">Video Tracks</h2>
 <section>
-<h2 id="introduction-4">Introduction</h2>
+<h3 id="introduction-4">Introduction</h3>
 <p>This section specifies CMAF video Tracks<span id="OLE_LINK53" class="anchor"><span id="OLE_LINK54" class="anchor"></span></span>, samples, codecs, elementary streams, and access units.</p>
 <p>CMAF video Tracks conform to ISO Media files containing a single ISO Media video track with all samples stored in movie fragments formatted as Segments, as specified in [<a href="#ISOMREF"><em>ISOM</em></a>] and [<a href="#ISOVIDEOREF"><em>ISOVIDEO</em></a>], with additional constraints specified in this section. Elementary stream encoding constraints are specified for two widely used MPEG video codecs, AVC and HEVC, and two access unit formats and sample descriptions, one optimized for file storage, and the other for live bitstream encoding and switching similar to transport streams.</p>
 <p>Constraints on Switching Sets of multiple CMAF video Tracks that enable seamless adaptive switching are specified in Section ‎6.1.6.Video Profiles are specified in ‎Annex A. to signal widely used operating points, such as SD, HD, and UHD, which further constrain codec profiles, levels, resolutions, framerates, bit depth, electro-optical transfer function, color subsampling, etc. For additional information see ‎Annex A.<br />
@@ -1785,7 +1799,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <section>
 <h4 id="sequence-parameter-sets-sps">Sequence Parameter Sets (SPS)</h4>
 <section>
-<h5 id="sps-field-constraints">SPS Field Constraints</h5></li>
+<h5 id="sps-field-constraints">SPS Field Constraints</h5>
 <p>Sequence Parameter Set NAL Units that occur in an AVC video CMAF Track shall conform to [<a href="#H264REF"><em>AVC</em></a>] with the following additional constraints:</p>
 <ul>
 <li><p>The following fields have pre-determined values as follows:</p>
@@ -2154,7 +2168,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </section>
 </section>
 <section>
-<h1 id="audio-tracks">Audio Tracks</h1>
+<h2 id="audio-tracks">Audio Tracks</h2>
 <section>
 <h2 id="overview-1">Overview</h2>
 <p>This section describes audio Tracks, their general container and Track constraints, and requirements for audio Media Profiles that specify codecs, elementary streams and sample formats.</p>
@@ -2187,7 +2201,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <li><p>matrix = {0x00010000, 0, 0, 0, 0x00010000, 0, 0, 0, 0x40000000} // unity matrix</p></li>
 <li><p>width = 0</p></li>
 <li><p>height = 0</p></li>
-<li><p>duration = 0 (duration of the ‘trak’ box, which contains no samples)</p>
+<li><p>duration = 0 (duration of the ‘trak’ box, which contains no samples)</p></li>
+</ul>
 </section>
 <section>
 <h3 id="sync-sample-box-stss">Sync Sample Box (‘stss’)</h3>
@@ -2197,12 +2212,16 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </blockquote>
 <ul>
 <li><p>For audio formats in which every audio access unit is a random access point (sync sample), signaling can be achieved by other means such as setting the 'sample_is_non_sync_sample' flag to &quot;0&quot; in the 'default_sample_flags' field in the Track Extends box (‘trex’).</p>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="handler-reference-box-hdlr">Handler Reference Box (‘hdlr’)</h3>
 <p>The syntax and values for the Handler Reference Box (‘hdlr’) for audio tracks shall conform to [ISOM] with the following additional constraints:</p>
 <ul>
 <li><p>The handler_type field shall be set to “soun”</p>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="sound-media-header-box-smhd">Sound Media Header Box (‘smhd’)</h3>
@@ -2212,6 +2231,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </ul>
 <ul>
 <li><p>balance = 0</p>
+</li>
+</ul>
 </section>
 <section>
 <h3 id="sample-description-box-stsd-2">Sample Description Box (‘stsd’)</h3>
@@ -2306,7 +2327,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Files SHALL indicate that initial added audio be removed, by using an edit list, as specified in Section‎7.5.14.</p>
 <p>The pre-roll sample group SHOULD be used to indicate that to get the correct audio out of any frame one must pass the previous frame to the decoder and discard the resulting output.</p>
 <p>Figure 4 illustrates an AAC bit-stream, both encoded and framed in Access Units in a track.</p>
-<p><img src="media/example-aac-access-units.png" width="578" height="242" /></p>
+<p><img src="media/example-aac-access-units.png" width="578" height="242" alt="Example of AAC Access Units"/></p>
 <p><span id="_Ref416538911" class="anchor"><span id="_Toc447628028" class="anchor"></span></span>Figure 4 - Example of AAC Access Units</p>
 <p>In Figure 5, the enclosed numbers indicate which input blocks are used for prediction and encoding in an encoded frame; for example, [1,2] indicates that block 2 is predicted from frame 1. The source block labelled “Dummy” is audio or silence encoded to output block 5, but is not included in the coded stream in the Track. The letter N indicates encoded silence in the last frame. The last audio frame MAY contain silence if the audio source ends prior to the frame boundary.</p>
 <p>The audio stream SHOULD contain DRC and loudness metadata according to [AAC]. The audio encoder SHOULD set the Program Reference Level to the loudness level of the audio stream. The audio decoder SHALL use the Program Reference Level, if available, to achieve a desired target loudness, if applicable. The audio encoder SHOULD generate DRC metadata for light compression encoded in the dyn_rng_ctl and dyn_rng_sgn fields of dynamic_range_info() in the FIL element and DRC metadata for heavy compression in the compression_value field of MPEG4_ancillary_data() in the DSE (data stream element). The audio decoder SHALL apply the DRC metadata, if present, according to [AAC] Amendment 4 including the DRC Presentation Mode value of the drc_presentation_mode field.</p>
@@ -2342,18 +2363,18 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <li><p>OCRstreamFlag = 0</p></li>
 <li><p>streamPriority = 0</p></li>
 <li><p>decConfigDescr = DecoderConfigDescriptor</p></li>
-<li><p>slConfigDescr = SLConfigDescriptor, predefined type 2</p>
+<li><p>slConfigDescr = SLConfigDescriptor, predefined type 2</p></li>
+</ul>
 </section>
 <section>
-<h5 id="decoderconfigdescriptor">DecoderConfigDescriptor</h5></li>
-</ol></li>
-</ul>
+<h5 id="decoderconfigdescriptor">DecoderConfigDescriptor</h5>
 <p>The syntax and values for DecoderConfigDescriptor shall conform to [MPEG4S], and the fields of this descriptor shall be set to the following specified values. In this descriptor, decoderSpecificInfo shall be used, and ProfileLevelIndicationIndexDescriptor shall not be used.</p>
 <ul>
 <li><p>objectTypeIndication = 0x40 (Audio)</p></li>
 <li><p>streamType = 0x05 (Audio Stream)</p></li>
 <li><p>upStream = 0</p></li>
-<li><p>decSpecificInfo = AudioSpecificConfig</p>
+<li><p>decSpecificInfo = AudioSpecificConfig</p></li>
+</ul>
 </section>
 <section>
 <h5 id="audiospecificconfig">AudioSpecificConfig</h5>
@@ -2371,7 +2392,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <ul>
 <li><p>frameLengthFlag = 0 (1024 lines IMDCT)</p></li>
 <li><p>dependsOnCoreCoder = 0</p></li>
-<li><p>extensionFlag = 0</p>
+<li><p>extensionFlag = 0</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -2389,7 +2411,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <ul>
 <li><p>Audio Object Type</p></li>
 <li><p>Sampling Frequency</p></li>
-<li><p>Channel Configuration</p>
+<li><p>Channel Configuration</p></li>
+</ul>
 </section>
 <section>
 <h4 id="syntactic-elements">Syntactic Elements</h4>
@@ -2456,7 +2479,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <li><p>OCRstreamFlag = 0 (false)</p></li>
 <li><p>streamPriority = 0</p></li>
 <li><p>decConfigDescr = DecoderConfigDescriptor</p></li>
-<li><p>slConfigDescr = SLConfigDescriptor, predefined type 2</p>
+<li><p>slConfigDescr = SLConfigDescriptor, predefined type 2</p></li>
+</ul>
 </section>
 <section>
 <h5 id="decoderconfigdescriptor-1">DecoderConfigDescriptor</h5>
@@ -2467,7 +2491,8 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <li><p>objectTypeIndication = 0x40 (Audio)</p></li>
 <li><p>streamType = 0x05 (Audio Stream)</p></li>
 <li><p>upStream = 0</p></li>
-<li><p>decSpecificInfo = AudioSpecificConfig</p>
+<li><p>decSpecificInfo = AudioSpecificConfig</p></li>
+</ul>
 </section>
 <section>
 <h5 id="audiospecificconfig-1">AudioSpecificConfig</h5>
@@ -2490,8 +2515,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <ul>
 <li><p>frameLengthFlag = 0 (1024 IMDCT lines)</p></li>
 <li><p>dependsOnCoreCoder = 0</p></li>
-<li><p>extensionFlag = 0</p>
-</li>
+<li><p>extensionFlag = 0</p></li>
 </ul>
 </section>
 </section>
@@ -2515,8 +2539,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <ul>
 <li><p>Audio Object Type</p></li>
 <li><p>Sampling Frequency</p></li>
-<li><p>Channel Configuration</p>
-</li>
+<li><p>Channel Configuration</p></li>
 </ul>
 </section>
 <section>
@@ -2526,8 +2549,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>The syntax and values for syntactic elements shall conform to [AAC]. The following elements shall not be present in an MPEG-4 HE AAC v1 or HE AAC v2 elementary stream:</p>
 <ul>
 <li><p>coupling_channel_element (CCE)</p></li>
-<li><p>program_config_element (PCE).</p>
-</li>
+<li><p>program_config_element (PCE).</p></li>
 </ul>
 </section>
 <section>
@@ -2537,8 +2559,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </ul>
 <ul>
 <li><p>&lt;SCE&gt;&lt;optional additional elements&gt;&lt;TERM&gt;… for HE AAC v2 and mono HE AAC v1</p></li>
-<li><p>&lt;CPE&gt;&lt;optional additional elements&gt;&lt;TERM&gt;... for stereo HE AAC v1</p>
-</li>
+<li><p>&lt;CPE&gt;&lt;optional additional elements&gt;&lt;TERM&gt;... for stereo HE AAC v1</p></li>
 </ul>
 </section>
 </section>
@@ -2549,7 +2570,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </section>
 </section>
 <section>
-<h1 id="subtitles-and-captions">Subtitles and Captions</h1>
+<h2 id="subtitles-and-captions">Subtitles and Captions</h2>
 <section>
 <h2 id="introduction-7">Introduction</h2>
 <p>CMAF supports the following formats for carrying subtitles and captions:</p>
@@ -2933,7 +2954,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <section>
 <h3>Example Encoding and Decoding Process</h3>
 <p>The following example shows a typical movie picture aspect ratio that was padded and encoded with letterbox bars to fit a 16:9 TV display. The active image is extracted, subsampled, encoded, and partially filled macroblocks indicated by cropping parameters. AVC and HEVC parameters for the example are detailed in the figure that follows.</p>
-<p><img src="media/letterboxed-content-encoding-process.png"></p>
+<p><img src="media/letterboxed-content-encoding-process.png" alt="Letterboxed Content Encoding Process"></p>
 <p>Figure 5 - Example of encoding process of letterboxed source content</p>
 <p>Figure 5 shows an example of the encoding process that can be applied. Table 8 shows the parameter values that could be used.</p>
 <p>Table 8 – Example sub-sample and cropping values for Figure 5</p>
@@ -3081,10 +3102,10 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Note 1: as chroma_format_idc is 1, SubWidthC and SubWidthC are set to 2 per [H264] and [H265]. This results in a doubling of frame crop parameters (so frame_crop_bottom_offset and conf_win_bottom_offset both equate to 14 pixels in the above example).</p>
 <p>Note 2: As [H265] MinCbSizeY is 16 and log2_min_luma_coding_block_size_minus3 is 1, the Coding Tree Unit size is 16x16 (matching the [H264] macroblock size of 16x16).</p>
 <p>The decoding and display process for this content is illustrated in Figure 6, below. In this example, the decoded picture dimensions are 1440 x 818, one line larger than the original active picture area. This is due to a limitation in the cropping parameters to crop only even pairs of lines. Note: 816 lines or 51 macroblocks might be more practical, but makes a less informative example.</p>
-<p><img src="media/letterboxed-content-display-process.png"></p>
+<p><img src="media/letterboxed-content-display-process.png" alt="Letterboxd content display process"></p>
 <p>Figure 6 – Example of display process for letterboxed source content</p>
 <p>Figure 7, below, illustrates what might happen when both sub-sampling and cropping are working in the same horizontal dimension. The original source picture content is first sub-sampled horizontally from a 1:1 sample aspect ratio at 1920 x 1080 to a sample aspect ratio of 4:3 at 1440 x 1080, then the 1080 x 1080-pixel active picture area of the sub-sampled image is encoded. However, the actual coded samples have a size of 1088 x 1088 samples due to the coding unit boundaries falling on even multiples of 16 pixels in this example - therefore, additional cropping parameters are provided in both horizontal and vertical dimensions.</p>
-<p><img src="media/pillarboxed-content-encoding-process.png"></p>
+<p><img src="media/pillarboxed-content-encoding-process.png" alt="Pillarboxed content encoding process"></p>
 <p>Figure 7 - Example of encoding process for pillarboxed source content</p>
 <p>Table 9 lists the various parameters that might appear in the resulting file for this sample content.</p>
 <p>Table 9 – Example sub-sample and cropping values for Figure 7</p>
@@ -3232,7 +3253,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <p>Note 1: as chroma_format_idc is 1, SubWidthC and SubWidthC are set to 2 per [H264] and [H265]. This results in a doubling of frame crop parameters (so frame_crop_bottom_offset and conf_win_bottom_offset both equate to 14 pixels in the above example).</p>
 <p>Note 2: As [H265] MinCbSizeY is 16 and log2_min_luma_coding_block_size_minus3 is 1, the Coding Tree Unit size is 16x16 (matching the [H264] macroblock size of 16x16).</p>
 <p>The process for reconstructing the video for display is shown in Figure 8. As in the previous example, the decoded picture is required to be scaled back up to the original 1:1 sample aspect ratio.</p>
-<p><img src="media/pillarboxed-content-display-process.png"></p>
+<p><img src="media/pillarboxed-content-display-process.png" alt="Pillarboxed content display process"></p>
 <p>Figure 8 – example of display process for pillarboxed source content</p>
 <p>If this content was to be displayed on a 4:3 television or other 4:3 display, no further processing of the image would be necessary. However, if this content was to be displayed on a 16:9 HDTV, it might be necessary for it to apply additional matting on the left and right sides to reconstruct the original pillarboxes in order to ensure the video image displays properly. Or, a user might elect to zoom the image to full width and crop the top and bottom. Standard procedure for most TV programs shot on 1.85 aspect ratio film is to “protect” the 1.78 aspect ratio area (16:9) so that the top and bottom can be cropped when displayed full width on HDTVs without loss of significant content.</p>
 </section>
@@ -3249,19 +3270,19 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 <h2>Example Encoding Parameters for Conformant CMAF Switching Sets</h2>
 <section>
 <h3>16x9 Aspect Ratio HD and SD</h3>
-<p><img src="media/16x9-aspect-ratio-hd-sd.png" width="623" height="556" /></p>
+<p><img src="media/16x9-aspect-ratio-hd-sd.png" width="623" height="556" alt="16x9 Aspect Ratio HD and SD" /></p>
 </section>
 <section>
 <h3>2.4 Aspect Ratio HD and SD</h3>
-<p><img src="media/2-4-aspect-ratio-hd-sd.png" width="624" height="532" /></p>
+<p><img src="media/2-4-aspect-ratio-hd-sd.png" width="624" height="532" alt="2.4 Aspect Ratio HD and SD"/></p>
 </section>
 <section>
 <h3>4x3 Aspect Ratio 1080 Line Source</h3>
-<p><img src="media/4x3-aspect-ratio-1080-line-source.png" width="624" height="526" /></p>
+<p><img src="media/4x3-aspect-ratio-1080-line-source.png" width="624" height="526" alt="4x3 Aspect Ratio 1080 Line Source"/></p>
 </section>
 <section>
 <h3>60Hz from 1280x720p60 Source</h3>
-<p><img src="media/60hz-1280x720p60-source.png" width="623" height="470" /></p>
+<p><img src="media/60hz-1280x720p60-source.png" width="623" height="470" alt="60Hz 1280x720p60 source" /></p>
 </section>
 </section>
 </body>
