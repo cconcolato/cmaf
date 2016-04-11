@@ -6,7 +6,6 @@
   <title>Common Media Application Format for Presentation of Segmented Media</title>
   <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async class='remove'></script>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="cmaf">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -21,7 +20,7 @@
 <p>The Common Media Application Format describes how to construct a multimedia presentation in a series of small media objects called Segments. These objects, even when produced during live presentation, can be transferred using common file-based delivery protocols – as well as more specialized methods such as multicast and peer-to-peer – and then reassembled and played back by a player.</p>
 <p>Segments contain movie fragments that can be copied directly from one or a set of CMAF conformant ISO Base Media files without modification. CMAF specifies the encoding constraints of movie fragments called CMAF Fragments, and the packaging of one or more CMAF Fragments in an addressable resource called a CMAF Segment. CMAF Segments are organized into a Presentation by a Manifest.</p>
 <p>Manifests can identify each CMAF Segment by a URI. The CMAF Segment data structure is independent of intermediate transport protocol or other delivery method, allowing CMAF Players to render the same CMAF Segments and Manifest regardless of delivery method. CMAF Fragments may be automatically formatted as CMAF Segments by HTTP(S) servers that encapsulate one or more CMAF Fragments in an HTTP(S) response matching that URL in a Manifest.</p>
-<p>A CMAF Track is a CMAF Header followed by a continuous sequence of CMAF Fragments ordered by decode time, nearly equivalent to a single track ISO Base Media File Format fragmented movie file. A CMAF Track may only contain a partial time range of a valid ISOBMFF track, whereas files are defined to start at media time zero. Each CMAF Track contains only one media type, such as audio, video, or subtitles. Discontinuous timespans of the same source stream are considered separate CMAF Tracks. Each Track must be synchronized in its own Presentation and must be initialized with a CMAF Header.</p>
+<p>A CMAF Track is a <a>CMAF Header</a> followed by a continuous sequence of CMAF Fragments ordered by decode time, nearly equivalent to a single track ISO Base Media File Format fragmented movie file. A CMAF Track may only contain a partial time range of a valid ISOBMFF track, whereas files are defined to start at media time zero. Each CMAF Track contains only one media type, such as audio, video, or subtitles. Discontinuous timespans of the same source stream are considered separate CMAF Tracks. Each Track must be synchronized in its own Presentation and must be initialized with a <a>CMAF Header</a>.</p>
 <p>Conceptually, multiple Presentations may be combined in a Composition in which each Presentation is played in sequence, or in parallel. The specification of Compositions and the implementation of a specific Manifest format are outside the scope of this specification. Any Manifest or Composition format that accurately describes CMAF Segments and Track Sets .and their synchronization may be used to assemble and render a Presentation.</p>
 <p>The CMAF specification adds constraints to the ISO Base Media File Format so that it meets the requirements of widely adopted streaming protocols such as MPEG DASH and Apple’s HTTP Live Streaming. CMAF Segment, Track, and Track Set constraints enable a sequence of CMAF Fragments resulting from adaptive streaming to be decoded seamlessly within a single ISOBMFF parser/decoder primarily designed for file playback, possibly isolated by an HTML web browser.</p>
 <p>To support interoperability, CMAF defines a file brand and Media Profiles for encoded media, including video (AVC &amp; HEVC), audio (AAC) and subtitles (WebVTT &amp; Closed Captions). These brands and Media Profiles indicate when a Track conforms to CMAF packaging and encoding constraints, and the maximum decoder requirements necessary to decode that Media Profile. The CMAF container brand can also be used in combination with CMAF Compatible Media Profiles, which are not specified in CMAF, but conform to CMAF container, Track, and functional constraints. CMAF specifies Presentation Profiles that define the minimum necessary Tracks and Media Profiles that must be included in a conforming Presentation. Wide support for these CMAF Presentation and Media Profiles by players will eliminate the need to store multiple variations of content, which will increase encoding, storage, and edge caching efficiency for distributors.</p>
@@ -155,7 +154,7 @@
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">CMAF Header</td>
+<td style="text-align: left;"><dfn>CMAF Header</dfn></td>
 <td style="text-align: left;">sequence of ISO Base Media File Format boxes starting with a file type box and including a movie box that includes initialization information common to a set of Segments. (<a href="#cmaf-header-initialization-segment"></a>).</td>
 </tr>
 <tr class="even">
@@ -192,11 +191,11 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Track</td>
-<td style="text-align: left;">sequence of CMAF Segments of the same media type ordered by presentation time, as well as the CMAF Header necessary to initialize that sequence of Segments. (<a href="#cmaf-tracks"></a>)</td>
+<td style="text-align: left;">sequence of CMAF Segments of the same media type ordered by presentation time, as well as the <a>CMAF Header</a> necessary to initialize that sequence of Segments. (<a href="#cmaf-tracks"></a>)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CMAF Track File</td>
-<td style="text-align: left;">CMAF Track stored in a single ISO BMFF file containing a CMAF Header and all CMAF Segments in sequence, starting from decode time zero.</td>
+<td style="text-align: left;">CMAF Track stored in a single ISO BMFF file containing a <a>CMAF Header</a> and all CMAF Segments in sequence, starting from decode time zero.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CMAF Track Duration</td>
@@ -248,7 +247,7 @@
 <td style="text-align: left;">Audio decoding Access Unit</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">CVS</td>
+<td style="text-align: left;"><abbr title="Coded Video Sequence starting with SAP type 1 or 2 picture, and including all samples prior to the next SAP type 1 or 2 picture">CVS</acronym></td>
 <td style="text-align: left;">Coded Video Sequence starting with SAP type 1 or 2 picture, and including all samples prior to the next SAP type 1 or 2 picture</td>
 </tr>
 <tr class="odd">
@@ -333,7 +332,7 @@
 </section>
 <section>
 <h2 id="media-object-model">Media Object Model</h2>
-<p>The CMAF media objects delivered for playback are Segments, which contain one or more Fragments containing the media data itself, and CMAF Headers, which carry initialization information common to a group of Segments. CMAF also defines logical media objects: Tracks, Switching Sets, Selection Sets, and Presentations. See Figure 1.</p>
+<p>The CMAF media objects delivered for playback are Segments, which contain one or more Fragments containing the media data itself, and <a>CMAF Header</a>s, which carry initialization information common to a group of Segments. CMAF also defines logical media objects: Tracks, Switching Sets, Selection Sets, and Presentations. See Figure 1.</p>
 <p>A Manifest is included in the application model to describe media objects as Presentations and enable playback (see Figure 1) , but the specific implementation of the Manifest is beyond the scope of this specification. The same media objects may be described by multiple manifest formats, and may be combined with different media objects in different Presentations using different Manifests. Reuse of the same media objects in different Presentations and Manifests greatly improves encoding, storage and delivery efficiency.</p>
 <p>It is possible to organize Presentations in sequences and other relationships referred to in this specification as a Composition. Composition examples include a sequence of programs and advertisements in a channel, an ad presentation that overlays a program presentation, a programmatic selection of a sequence of Manifests, manual selection of Presentations from a menu, etc. CMAF defines the encoding and organization of Segments and Tracks within each Presentation, but does not define or constrain the Composition of multiple Presentations.</p>
 <p>Subsections of <a href="#cmaf-architecture"></a> describe the important constraints on these media objects. Subsequent Sections of CMAF specify the container and track formats in detail.</p>
@@ -344,13 +343,13 @@
 <h2>CMAF Fragments, Segments, and Chunks</h2>
 <section>
 <h2>Introduction</h2>
-<p>CMAF Tracks are encoded as a CMAF Header followed by time-sequential Fragments containing media samples and their metadata. Independently decodable Fragments improve interoperability by allowing media decoding systems to render continuous media streams regardless of the delivery method or adaptive switching between Tracks in a Switching Set.</p>
+<p>CMAF Tracks are encoded as a <a>CMAF Header</a> followed by time-sequential Fragments containing media samples and their metadata. Independently decodable Fragments improve interoperability by allowing media decoding systems to render continuous media streams regardless of the delivery method or adaptive switching between Tracks in a Switching Set.</p>
 <p>One or more complete Fragments in sequence are contained in a Segment. A Segment is usually identified by a URL that can be used to reference it by servers, CDNs, and Manifests. The ability of many Presentations, Manifests, and CDN edge caches to refer to the same CMAF Segment by the same URI greatly improves Internet streaming efficiency.</p>
 <p>For low latency delivery of Fragments, the samples of a Fragment can be delivered as they are encoded, in short duration Low Latency Decodable Chunks, each with a metadata header to enable parsing and decoding. Chunk support is optional for servers and players. The same samples are available later as a Segment, after the Segment is fully encoded.</p>
 </section>
 <section>
 <h2>Fragments</h2>
-<p>CMAF Fragments are ISO Base Media movie fragments conforming to the CMAF specification, and are the primary media objects encoded and decoded. CMAF Fragments enable live encoding, adaptive streaming, and late binding by segmenting the media by time and type. Fragments are logically or physically combined into CMAF Tracks that start with a CMAF Header. Each Fragment contains a Track Fragment Decode Time Box (‘tfdt’) that determines its sequence within a CMAF Track.</p>
+<p>CMAF Fragments are ISO Base Media movie fragments conforming to the CMAF specification, and are the primary media objects encoded and decoded. CMAF Fragments enable live encoding, adaptive streaming, and late binding by segmenting the media by time and type. Fragments are logically or physically combined into CMAF Tracks that start with a <a>CMAF Header</a>. Each Fragment contains a Track Fragment Decode Time Box (‘tfdt’) that determines its sequence within a CMAF Track.</p>
 <p>CMAF Fragment constraints and relationships are specified in CMAF as Tracks. Tracks can conform to Switching Sets and Selection Sets that are synchronized in a Presentation. A Presentation can be described by one or more Manifests. A CMAF Segment is a resource consisting of one or more consecutive and complete CMAF Fragments. See section 2 of [<a href="#RFC7231"><em>RFC7231</em></a>] for the definition and identification of a resource.</p>
 <p>Each CMAF Segment is normally identified with a URI in Manifests, in some cases including a byte range.</p>
 <p>CMAF Fragments and the Segments that contain them are additionally constrained in order to conform to a Track, Switching Set, Selection Set, and Presentation; as specified in those sections below.</p>
@@ -375,11 +374,11 @@
 </section>
 <section>
 <h2 id="cmaf-tracks">CMAF Tracks</h2>
-<p>A CMAF Track is a continuous sequence of CMAF Segments in presentation time order preceded by a CMAF Header. The CMAF Header contains a Movie Box (‘moov’) sufficient to process and present all CMAF Segments in the CMAF Track.</p>
+<p>A CMAF Track is a continuous sequence of CMAF Segments in presentation time order preceded by a <a>CMAF Header</a>. The <a>CMAF Header</a> contains a Movie Box (‘moov’) sufficient to process and present all CMAF Segments in the CMAF Track.</p>
 </section>
 <section>
 <h2 id="cmaf-track-files">CMAF Track Files</h2>
-<p>A CMAF Track File is a complete CMAF Track stored in a single ISOM BMFF file. The CMAF Track File starts with a CMAF Header followed by a continuous sequence of CMAF Fragments in decode order, and the first CMAF Fragment has a BaseMediaDecodeTime of zero.</p>
+<p>A CMAF Track File is a complete CMAF Track stored in a single ISOM BMFF file. The CMAF Track File starts with a <a>CMAF Header</a> followed by a continuous sequence of CMAF Fragments in decode order, and the first CMAF Fragment has a BaseMediaDecodeTime of zero.</p>
 <p>CMAF Segments may be identified by the file URI and a byte range. CMAF Segment byte ranges may be listed in a manifest for determined from a delivery format defined method, such as download of a Segment Index Box (‘sidx’), that is out of scope of CMAF.</p>
 </section>
 <section>
@@ -391,16 +390,16 @@
 </section>
 <section>
 <h4 id="decoding-adaptively-switched-segments">Decoding Adaptively Switched Segments</h4>
-<p>Adaptively delivered CMAF Track is a timed sequence of CMAF Headers and Fragments selected from multiple CMAF Tracks in a Switching Set. Typical ISOBMFF file parsers and decoders can decode the concatenated sequence of CMAF Fragments the same as a fragmented movie file, with the possible exception of needing to re-initialize the decoder at switch points, as though switching unrelated tracks in a multitrack file ISO Media file.</p>
+<p>Adaptively delivered CMAF Track is a timed sequence of <a>CMAF Header</a>s and Fragments selected from multiple CMAF Tracks in a Switching Set. Typical ISOBMFF file parsers and decoders can decode the concatenated sequence of CMAF Fragments the same as a fragmented movie file, with the possible exception of needing to re-initialize the decoder at switch points, as though switching unrelated tracks in a multitrack file ISO Media file.</p>
 <p>An adaptive streaming Player typically “switches Tracks”, i.e. selects the next CMAF Segment from a different CMAF Track in the Switching Set, to adapt to the current throughput of the network and maintain a safe level in the Player’s buffers that will prevent an interruption in the presentation.</p>
 <p>The encoding constraints of the CMAF Tracks in a Switching Set determine if the Adaptively Switched Track requires re-initialization at adaptive switch points.</p>
 <ul>
 <li><p>If a Switching Set is encoded with bitstream switching constraints, a continuous sequence of CMAF Fragments may be delivered and decoded.</p></li>
-<li><p>If a Switching Set is not encoded with bitstream switching constraints, a CMAF Header must be processed prior to each sequence of CMAF Fragments from that CMAF Track.</p></li>
+<li><p>If a Switching Set is not encoded with bitstream switching constraints, a <a>CMAF Header</a> must be processed prior to each sequence of CMAF Fragments from that CMAF Track.</p></li>
 </ul>
-<p>Processing the CMAF Header causes re-initialization of the parsing, decoding, decryption, and display parameters contained in the CMAF Header. This can be similar to switching files if all parameters are reset, in which case it might not be seamless. Players can minimize the impact by comparing parameters and only changing configurations that need to be changed, e.g. the video decoder need not be reconfigured for a lower profile or level. Decoding and video scaling parameters in the CMAF Header must be set before decoding and rendering the CMAF video Fragments from that non-bitstream switchable Switching Set. See section [‎7.3.8] for details on CMAF Switching Sets.</p>
+<p>Processing the <a>CMAF Header</a> causes re-initialization of the parsing, decoding, decryption, and display parameters contained in the <a>CMAF Header</a>. This can be similar to switching files if all parameters are reset, in which case it might not be seamless. Players can minimize the impact by comparing parameters and only changing configurations that need to be changed, e.g. the video decoder need not be reconfigured for a lower profile or level. Decoding and video scaling parameters in the <a>CMAF Header</a> must be set before decoding and rendering the CMAF video Fragments from that non-bitstream switchable Switching Set. See section [‎7.3.8] for details on CMAF Switching Sets.</p>
 <p>The normative behavior of video decoders is well-specified, but display processing is considered out of scope, i.e. conversion of YCbCr 4:2:0 subsamples from the decoder to some number of pixels in a colorspace appropriate for a particular display. Adaptive display processors require unspecified but typical behavior to scale different video spatial sampling used to encode different CMAF Fragments to the same display size and position. CMAF Tracks in a Switching Set are constrained to subsample, frame, and crop the source video so it can be rescaled with precise registration to make switching as seamless as possible. The constraints specified for CMAF Tracks and Switching Sets determine the behavior required by display processors, but display processing and other Player requirements are not directly specified by CMAF.</p>
-<p>CMAF video Tracks require re-initialization if they store any video decoding parameter sets only in the CMAF Header (e.g. ‘avc1’ and ‘hvc1’ sample entries and video sample formats).</p>
+<p>CMAF video Tracks require re-initialization if they store any video decoding parameter sets only in the <a>CMAF Header</a> (e.g. ‘avc1’ and ‘hvc1’ sample entries and video sample formats).</p>
 <p>Video CMAF Fragments from the same Switching Set, encoded with parameter sets in each CMAF Fragment (e.g. ‘avc3’ and ‘hev1’ sample entries and video sample formats) can be decoded without re-initialization, the same as a CMAF Track that is not switched.</p>
 </section>
 </section>
@@ -435,7 +434,7 @@
 <section>
 <h3 id="manifest">Manifest</h3>
 <p>Although CMAF does not define the form or the content of the Manifest, it does define its role. A Manifest is a document that describes one or more CMAF Presentations; e.g. the MPEG DASH MPD.</p>
-<p>A Manifest provides the Player with enough information to select, initialize, and synchronize the CMAF Track(s) to be played, and identify CMAF Headers and Segments, and possibly download them synchronously. CMAF Tracks and Fragments contain sufficient information to enable decryption, decoding, synchronization, and rendering once CMAF Fragments are located in CMAF Segments. A Manifest can also provide information on delivery protocol, network management, authorization, license acquisition, etc. in addition to Segment identification and Presentation description, but those are optional for the hypothetical presentation model.</p>
+<p>A Manifest provides the Player with enough information to select, initialize, and synchronize the CMAF Track(s) to be played, and identify <a>CMAF Header</a>s and Segments, and possibly download them synchronously. CMAF Tracks and Fragments contain sufficient information to enable decryption, decoding, synchronization, and rendering once CMAF Fragments are located in CMAF Segments. A Manifest can also provide information on delivery protocol, network management, authorization, license acquisition, etc. in addition to Segment identification and Presentation description, but those are optional for the hypothetical presentation model.</p>
 <p>A CMAF Manifest is responsible for describing the combination and synchronization of independently encoded CMAF Switching Sets grouped in Selection Set to form a synchronized multimedia presentation. A common presentation timeline, similar to an ISO Media movie timeline, can be used to synchronize the timestamps of each CMAF Track so that a CMAF Player can “late bind” selected audio, video, and subtitles. In cases where there are multiple CMAF Tracks in a Switching Set, a CMAF Player can seamlessly switch between CMAF Tracks to optimize for the network bandwidth and device capability.</p>
 <p>Presentation Manifests are expected to include any recorded audio offset edit list duration in Manifest synchronization information so that audio Switching Set synchronization is precisely described relative to video to the accuracy of the media timescales. A Manifest may specify a presentation start time referencing wall clock time, e.g. UTC time; typically for a live Presentation.</p>
 <p>A Manifest may specify a growing Presentation duration for each Selection Set and its contained Switching Sets and Tracks during live encoding and playback.</p>
@@ -456,7 +455,7 @@
 <p>Each CMAF Segment contains a media timestamp in the form of BaseMediaDecodeTime in the Track Fragment Decode Time Box (‘tfdt’), which allows individual CMAF Segments and CMAF Tracks that start with arbitrary timestamps to be synchronized to a presentation timeline</p>
 </blockquote></li>
 <li><blockquote>
-<p>The movie fragment box (‘moof') and the sample data contain everything necessary to render the samples at the correct place on the playback timeline after a Track has been initialized with a CMAF Header.</p>
+<p>The movie fragment box (‘moof') and the sample data contain everything necessary to render the samples at the correct place on the playback timeline after a Track has been initialized with a <a>CMAF Header</a>.</p>
 </blockquote></li>
 <li><blockquote>
 <p>CMAF Tracks can be separately selected and delivered by a player, then synchronized at presentation time, thus allowing each player to customize the presentation for the device, network, and user.</p>
@@ -490,7 +489,7 @@
 </ul>
 <p>Live Presentation playback is typically optimized for low latency, so a player only buffers a few seconds of each selected CMAF Track in the player to minimize presentation delay. A different bitrate could be selected for each CMAF Segment requested from a Switching Set in order to prevent buffer underflow in the player while maximizing media quality. Once a live presentation delay and buffer duration is selected, the delay can’t be changed without halting playback and rebuffering, or decoding at a speed faster or slower than normal, which is usually not acceptable. Measurements of network latency, jitter, throughput rate, throughput variation, Segment duration variation, and server/client clock synchronization can help a player select an optimal presentation delay and next Segment bitrates to request. To minimize visible changes between CMAF Segments encoded at different bitrates, live CMAF Switching Sets may include more Tracks with smaller bitrate differences, for instance an increase of 30% to the next highest bitrate Track.</p>
 <p>Recorded (video on demand) Presentation playback is typically optimized for infrequent switching and infrequent rebuffering. Players can accumulate several minutes of buffer time during playback by selecting lower bitrate Segments that can be downloaded faster than they are decoded. Once sufficient buffer time has accumulated; an optimum bitrate can be selected. Tracks may be rarely switched because the long player buffer duration averages short term changes in network throughput. Because bitrate changes are less frequent and therefore less noticeable, fewer Tracks with larger bitrate differences may be considered acceptable in order to reduce encoding and storage, for instance an increase of 50% to the next highest bitrate Track.</p>
-<p>When Players adaptively switch CMAF video Tracks, they typically rescale the decoded and cropped image to the Player selected display aperture. Alternative Tracks in a Switching Set are typically encoded at lower resolutions (subsampled) in proportion to their bitrate. If video samples are stored in ‘avc1’ or ‘hvc1’ format, a CMAF Header must be processed before the first CMAF Segment from a new Track to reinitialize the decoder with the correct decoding parameters for that Track. If video samples are stored in ‘avc3’ or ‘hev1’ format, reinitialization is not required because each CMAF Fragment contains the necessary decoding parameters in the first video sample.</p>
+<p>When Players adaptively switch CMAF video Tracks, they typically rescale the decoded and cropped image to the Player selected display aperture. Alternative Tracks in a Switching Set are typically encoded at lower resolutions (subsampled) in proportion to their bitrate. If video samples are stored in ‘avc1’ or ‘hvc1’ format, a <a>CMAF Header</a> must be processed before the first CMAF Segment from a new Track to reinitialize the decoder with the correct decoding parameters for that Track. If video samples are stored in ‘avc3’ or ‘hev1’ format, reinitialization is not required because each CMAF Fragment contains the necessary decoding parameters in the first video sample.</p>
 <p>See Appendix B for recommendations on encoding adaptive Switching Sets.</p>
 </section>
 </section>
@@ -513,7 +512,7 @@
 <p>The primary constraints of the ‘cmfc’ file type brand are described in Sections ‎7.3.4 and ‎7.3.5.</p>
 <p>The media samples contained in CMAF Segments can also be packaged and delivered in smaller Low Latency Decodable Chunks. See Section ‎7.3.7.</p>
 <p>Additional container constraints are specified in this Section and in Sections ‎7 through ‎11 and ‎Annex A. that define audio, video, and subtitle Track formats and Track Profiles, and encryption of audio and video media data. Additional container and Track constraints are specified for Tracks included in Track Selection Sets (see ‎6.1.7) and Track Switching Sets (see ‎6.1.6).</p>
-<p>Each Track has a CMAF Header associated with it, although the CMAF Header and CMAF Segments might not be stored as an ISO Media file, if they are stored at all.</p>
+<p>Each Track has a <a>CMAF Header</a> associated with it, although the <a>CMAF Header</a> and CMAF Segments might not be stored as an ISO Media file, if they are stored at all.</p>
 </section>
 <section><h2 id="cmaf-container-syntax">CMAF Container Syntax</h2>
 <section>
@@ -1127,15 +1126,15 @@ stz2</td>
 <p>The structure of a CMAF container is specified as a file, although it may only exist as a stream of Segments that never persist as a complete file. The following structure applies to a file that may represent the accumulation of a stream that is encoded over time, a file that is progressively downloaded over time, or a stored file. Additional constraints may be required to conform to a particular Media Profile and Application Profile defined in this specification.</p>
 </section>
 <section>
-<h3 id="cmaf-header-initialization-segment">CMAF Header / Initialization Segment</h3>
-<p>Figure 2 illustrates a CMAF Header, consisting of a sequence of required or optional boxes (optional boxes indicated by dotted lines).</p>
-<p>The CMAF Header defines the set of boxes that appear at the beginning of a CMAF Container and their sequence, as shown in Figure 2. The CMAF Header is defined to extend from the first byte of the container up to but not including the first byte of the first CMAF Segment. These boxes are defined in compliance with [<a href="#ISOMREF"><em>ISOM</em></a>] with the following additional constraints and requirements:</p>
+<h3 id="cmaf-header-initialization-segment"><a>CMAF Header</a> / Initialization Segment</h3>
+<p>Figure 2 illustrates a <a>CMAF Header</a>, consisting of a sequence of required or optional boxes (optional boxes indicated by dotted lines).</p>
+<p>The <a>CMAF Header</a> defines the set of boxes that appear at the beginning of a CMAF Container and their sequence, as shown in Figure 2. The <a>CMAF Header</a> is defined to extend from the first byte of the container up to but not including the first byte of the first CMAF Segment. These boxes are defined in compliance with [<a href="#ISOMREF"><em>ISOM</em></a>] with the following additional constraints and requirements:</p>
 <ul>
 <li><blockquote>
-<p>The CMAF Header SHALL start with a File Type Box (‘ftyp’), as defined in Section‎7.5.1.</p>
+<p>The <a>CMAF Header</a> SHALL start with a File Type Box (‘ftyp’), as defined in Section‎7.5.1.</p>
 </blockquote></li>
 <li><blockquote>
-<p>The CMAF Header shall include one Movie Box (‘moov’).</p>
+<p>The <a>CMAF Header</a> shall include one Movie Box (‘moov’).</p>
 </blockquote></li>
 <li><blockquote>
 <p>The Movie Box shall start with a Movie Header Box (‘mvhd’), as defined in Section ‎7.5.2.</p>
@@ -1146,14 +1145,14 @@ stz2</td>
 <p>The Movie Box shall contain one or more media tracks as specified in Section‎7.3.4, which defines the Track Box (‘trak’) requirements for the Common Media Format.</p>
 </blockquote></li>
 <li><blockquote>
-<p>Media Samples SHALL NOT be referenced by the Track Box (‘trak’) in a CMAF Header. Therefore, the duration field value in the Movie and Track Header Boxes is zero, since it stores the duration of the Track Box, not the Movie Fragments Boxes.</p>
+<p>Media Samples SHALL NOT be referenced by the Track Box (‘trak’) in a <a>CMAF Header</a>. Therefore, the duration field value in the Movie and Track Header Boxes is zero, since it stores the duration of the Track Box, not the Movie Fragments Boxes.</p>
 </blockquote></li>
 <li><blockquote>
 <p>The Movie Box shall contain a Movie Extends Box (‘mvex’), as defined in Section 8.8.1 of [<a href="#ISOMREF"><em>ISOM</em></a>], to indicate that the container contains Movie Fragment Boxes.</p>
 </blockquote></li>
 </ul>
-<p><img src="media/cmaf-header-box-sequence-structure.png" width="475" height="301" alt="CMAF Header Box Sequence and Structure" /></p>
-<p>Figure 2 – (Informational) CMAF header box sequence and structure</p>
+<p><img src="media/cmaf-header-box-sequence-structure.png" width="475" height="301" alt="<a>CMAF Header</a> Box Sequence and Structure" /></p>
+<p>Figure 2 – (Informational) <a>CMAF Header</a> box sequence and structure</p>
 <ul>
 <li><blockquote>
 <p>The Movie Extends Box (‘mvex’) MAY contain a Movie Extends Header Box (‘mehd’), as defined in [<a href="#ISOMREF"><em>ISOM</em></a>] Section 8.8.2, and if so SHALL provide the overall duration of a fragmented movie. If the duration is unknown, this box SHALL be omitted.</p>
@@ -1166,8 +1165,8 @@ stz2</td>
 </section>
 <section>
 <h3 id="cmaf-tracks-1">CMAF Tracks</h3>
-<p>A CMAF Track is a CMAF Header followed by a timed sequence of CMAF Fragments that form a byte sequence equivalent to a single track ISO Media File, or a portion of a hypothetical file, i.e. the first movie fragment MAY begin with a non-zero baseMediaDecodeTime. The first CMAF Fragment in a CMAF Track MAY be non-zero because only a subset of a file’s movie fragments are included in the CMAF Track, or because Track Fragment Decode Time Box (‘tfdt’) baseMediaDecodeTime used a timeline origin such as UTC (1/1/1900) or Unix Epoch (1/1/1970) when it was encoded.</p>
-<p>A CMAF Track SHALL consist of a continuous sequence of CMAF Fragments encoded from the same media source stream and media type ordered by presentation time, as well as a CMAF Header sufficient to initialize and process those CMAF Fragments.</p>
+<p>A CMAF Track is a <a>CMAF Header</a> followed by a timed sequence of CMAF Fragments that form a byte sequence equivalent to a single track ISO Media File, or a portion of a hypothetical file, i.e. the first movie fragment MAY begin with a non-zero baseMediaDecodeTime. The first CMAF Fragment in a CMAF Track MAY be non-zero because only a subset of a file’s movie fragments are included in the CMAF Track, or because Track Fragment Decode Time Box (‘tfdt’) baseMediaDecodeTime used a timeline origin such as UTC (1/1/1900) or Unix Epoch (1/1/1970) when it was encoded.</p>
+<p>A CMAF Track SHALL consist of a continuous sequence of CMAF Fragments encoded from the same media source stream and media type ordered by presentation time, as well as a <a>CMAF Header</a> sufficient to initialize and process those CMAF Fragments.</p>
 <p>A CMAF Compatible Track MAY contain timed metadata, but SHALL be contained in a separate metadata Selection Set, not a second track in CMAF audio or video Fragments.</p>
 <p>Media samples in successive Fragments of a Track SHALL be continuous in decoding time.</p>
 <p>The first CMAF Fragment in a CMAF Track MAY start at a non-zero baseMediaDecodeTime.</p>
@@ -1175,7 +1174,7 @@ stz2</td>
 <p>Sequence_number in ‘mfhd’ is ignored, and is not required to be unique within CMAF Track or increase with decode time.</p>
 <p>Each CMAF Fragment in a CMAF Track SHOULD have a duration of at least one second, with the possible exception of the first and last Fragments of the Track, to avoid the need for very short CMAF Segments and request scheduling.</p>
 <p>Note: Valid CMAF Tracks do not have media time discontinuities resulting from missing samples or Fragments. Gaps in decode time would result in audio video synchronization errors because the ISO Base Media File Format calculates decode and presentation times as the sum of prior sample durations in a track. If audio or video frames are unavailable during recording, recorded samples may be extended in duration or filled with media data such as silent audio or repeated pictures. Long gaps and gaps synchronized across all media streams can be recorded as two sequential, but non-continuous CMAF Tracks or Presentations that can be sequenced by a Manifest. A Manifest can sequence Tracks on a presentation timeline to remove a time gap, or maintain a presentation gap between two Tracks so they remain in sync with other Tracks. Player handling of delivery errors that result in invalid CMAF Fragment sequences is out of scope of CMAF, but the Track Fragment Decode Time Box (‘tfdt’) in each Fragment enables synchronization to Manifest presentation time following a gap in media delivery, trick play, etc.</p>
-<p>Tracks begin with a CMAF Header, and samples are stored in CMAF Fragments that each contain a single Track Fragment that references a complete sample sequence stored in a Media Data Box (‘mdat’) that immediately follows each Movie Fragment box in delivery/storage order.</p>
+<p>Tracks begin with a <a>CMAF Header</a>, and samples are stored in CMAF Fragments that each contain a single Track Fragment that references a complete sample sequence stored in a Media Data Box (‘mdat’) that immediately follows each Movie Fragment box in delivery/storage order.</p>
 <p>Each Track contains a Track Box (‘trak’) in accordance with [<a href="#ISOMREF"><em>ISOM</em></a>], with the following constraints:</p>
 <ul>
 <li><p>Track Boxes (‘trak’) SHALL NOT reference media samples.</p></li>
@@ -1195,14 +1194,14 @@ stz2</td>
 <br />
 Note that video with caption data embedded in the elementary stream (e.g. CEA 608 in SEI NALs) is identified as a single CMAF Track of video media type, but the presence of SEI caption data is indicated by an additional sample description with the sample entry ‘csei’.</p></li>
 <li><p>The Track Fragment Box (‘traf’) SHALL contain one Track Fragment Decode Time Box (‘tfdt’) that indicates both the earliest sample presentation time in the Fragment and the earliest sample decode time (stored in the baseMediaDecodeTime field).</p></li>
-<li><p>The Track Fragment Box (‘traf’) SHALL contain one Track Run Box (‘trun’) that relies on default values stored within the CMAF Fragment, or that are constant for all CMAF Fragments in the same CMAF Switching Set (e.g. default_sample_duration or dependency flags in Track Extends Box (‘trex’) in the CMAF Headers).</p></li>
+<li><p>The Track Fragment Box (‘traf’) SHALL contain one Track Run Box (‘trun’) that relies on default values stored within the CMAF Fragment, or that are constant for all CMAF Fragments in the same CMAF Switching Set (e.g. default_sample_duration or dependency flags in Track Extends Box (‘trex’) in the <a>CMAF Header</a>s).</p></li>
 <li><p>A CMAF Fragment SHALL contain all media samples necessary to render the duration of the track fragment box, and no others.</p></li>
 <li><p>All media samples in a CMAF Fragment SHALL be addressed by byte offsets in the Track Run Box (‘trun’) that are relative to the first byte of the Movie Fragment Box (‘moof’). (see [<a href="#ISOMREF">ISOM</a>] Section 8.8.4).</p></li>
 <li><p>All samples in a CMAF Fragment SHALL be decodable without reference to samples outside the CMAF Fragment, with the exception of initial audio samples that may be necessary to prime a predictive audio codec.</p></li>
 <li><p>All video CMAF Fragments SHALL contain only complete Coded Video Sequences delimited by SAP type 1 or 2.</p></li>
 <li><p>All video CMAF Fragments SHALL contain a v1 Track Run Box (‘trun’) with composition offsets (negative composition offsets where necessary) to adjust the earliest sample presentation time to equal the earliest sample decode time stored in the baseMediaDecodeTime field of the Track Fragment Decode Time Box (‘tfdt’).</p></li>
 <li><p>CMAF Fragments containing encrypted samples SHALL conform to the constraints in Section ‎8.</p></li>
-<li><p>Each CMAF Fragment, in association with its associated CMAF Header, SHALL contain sufficient metadata to be decoded, decrypted, and displayed when it is independently accessed.</p>
+<li><p>Each CMAF Fragment, in association with its associated <a>CMAF Header</a>, SHALL contain sufficient metadata to be decoded, decrypted, and displayed when it is independently accessed.</p>
 <ol type="a">
 <li><p>Note: For instance, if sample groups and sample group descriptions are used to signal optional features, such as encryption key changes, then a Sample Group Description Box (‘sgpd’), and Sample to Group Box (‘sbgp’) that reference that description has to be present in each in each Track Fragment Box (‘traf’).</p></li>
 </ol></li>
@@ -1254,16 +1253,16 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <p>Each Track in a Switching Set SHALL have the same CMAF Track Duration.</p>
 <p>Each Track in a Switching Set SHALL have the same number of Segments.</p>
 <p>CMAF Segments encoded from the same media samples in a Switching Set SHALL start at the same presentation time, as specified by the BaseMediaDecodeTime in the Track Fragment Decode Time Box (‘tfdt’).</p>
-<p>All CMAF Tracks in a Switching Set SHALL have CMAF Headers with matching boxes and field values, except for the following fields in the Movie Header Box, Track Header Box, or visual sample entry:</p>
+<p>All CMAF Tracks in a Switching Set SHALL have <a>CMAF Header</a>s with matching boxes and field values, except for the following fields in the Movie Header Box, Track Header Box, or visual sample entry:</p>
 <ul>
-<li><p>The fields width, height, creation_time, and modification_time MAY differ between CMAF Headers in a Switching Set.</p></li>
+<li><p>The fields width, height, creation_time, and modification_time MAY differ between <a>CMAF Header</a>s in a Switching Set.</p></li>
 <li><p>Visual sample entries SHALL indicate the same codingname by its four-character code.</p></li>
 <li><p>Visual sample entries MAY indicate different codec profile, level, and constraints; and different encoded width, height, sample aspect ratio, and cropping dimensions.</p></li>
 </ul>
 <p>Tracks MAY have different frame rates, but the number of samples per Segment and their duration SHALL differ inversely so that alternative Segments have equal duration.</p>
-<p>Each Video Track in a Switching Set SHALL have a CMAF Header containing a Track Header Box (‘tkhd’) with normalized display width and height values, and one sample entry that describes every Sample in the Track. See Section ‎9 for more information on calculating normalized display width and height.</p>
+<p>Each Video Track in a Switching Set SHALL have a <a>CMAF Header</a> containing a Track Header Box (‘tkhd’) with normalized display width and height values, and one sample entry that describes every Sample in the Track. See Section ‎9 for more information on calculating normalized display width and height.</p>
 <p>All video Segments within a Switching Set are intended to be displayed with the same height, width and position; and SHALL be encoded with the same framing, transfer function, bit depth, color subsampling, and color volume, so that switching between CMAF Tracks in a Switching Set will result in continuous appearance when the CMAF Segments are scaled to the same display aperture.</p>
-<p>Switching Sets are defined to be “bitstream switchable” if they need to process a CMAF Header only once before the first CMAF Fragment is decoded, and can switch between CMAF Tracks in the same CMAF Switching Set without processing a CMAF Header, or “re-initializing” parsing, decoding, decryption, or display systems.</p>
+<p>Switching Sets are defined to be “bitstream switchable” if they need to process a <a>CMAF Header</a> only once before the first CMAF Fragment is decoded, and can switch between CMAF Tracks in the same CMAF Switching Set without processing a <a>CMAF Header</a>, or “re-initializing” parsing, decoding, decryption, or display systems.</p>
 <p>The following CMAF Track types encoded to the constraints of this document are bitstream switchable:</p>
 <ol type="1">
 <li><p>Audio Tracks</p></li>
@@ -1276,7 +1275,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <li><p>Video with ‘avc1’ sample entry</p></li>
 <li><p>Video with ‘hvc1’ sample entry</p></li>
 </ol>
-<p>Switching Sets that are not bitstream switchable require re-initialization before decoding a sequence of CMAF Fragments from a Track by processing the CMF Header of that Track. A CMAF Header from each Track in the Switching Set need only be downloaded once (it is assumed they do not change during encoding), but must be processed every time that Track is switched to, in order to set the correct decoder configuration in the sample entry, apply the correct cropping and scaling, codec profile and level, etc. Players that process CMF Headers on each Track switch can evaluate parameter changes to minimize the amount of reconfiguration required and minimize presentation disruption.</p>
+<p>Switching Sets that are not bitstream switchable require re-initialization before decoding a sequence of CMAF Fragments from a Track by processing the CMF Header of that Track. A <a>CMAF Header</a> from each Track in the Switching Set need only be downloaded once (it is assumed they do not change during encoding), but must be processed every time that Track is switched to, in order to set the correct decoder configuration in the sample entry, apply the correct cropping and scaling, codec profile and level, etc. Players that process CMF Headers on each Track switch can evaluate parameter changes to minimize the amount of reconfiguration required and minimize presentation disruption.</p>
 <p>Manifests can identify bitstream switchable Switching Sets explicitly, but if they do not, the above assumptions can be used by Players.</p>
 <p>See also Section ‎9.2 and Section A.3.</p>
 </section>
@@ -1294,7 +1293,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <p>A CMAF Presentation SHALL contain one or more synchronized Selection Sets, each Selection Set potentially synchronizing a different media type (audio, video, or subtitles).</p>
 <p>CMAF Tracks of different media types in a Presentation SHALL be encoded such that synchronized timestamps in the sources produce synchronized timestamps in the corresponding encoded Segments.</p>
 <p>Each CMAF Track in a Presentation SHALL be synchronized to the same presentation start time, and have approximately the same Track duration, within a tolerance of the longest CMAF Segment Duration of any Track in a Selection Set.</p>
-<p>An offset edit list SHOULD be recorded in a CMAF header when encoding an audio track that contains a CMAF Fragment that overlaps the presentation time of the first video sample, in order to skip audio that precedes the first video sample during playback. See Section‎7.5.14.</p>
+<p>An offset edit list SHOULD be recorded in a <a>CMAF Header</a> when encoding an audio track that contains a CMAF Fragment that overlaps the presentation time of the first video sample, in order to skip audio that precedes the first video sample during playback. See Section‎7.5.14.</p>
 <p>The duration of a Presentation SHALL default to the duration of its longest Switching Set, but Manifest MAY indicate earlier termination. A Presentation MAY have a fixed duration, or a duration that grows over time as CMAF Segments are encoded or otherwise added to Tracks. This is normally the case for live Presentations.</p>
 </section>
 </section>
@@ -1338,7 +1337,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 </section>
 <section>
 <h3 id="handler-reference-box-hdlr-for-file-metadata">Handler Reference Box (‘hdlr’) for File Metadata </h3>
-<p>The CMAF Header SHOULD contain a Copyright notice stored as defined in ISO/IEC 14496-12.</p>
+<p>The <a>CMAF Header</a> SHOULD contain a Copyright notice stored as defined in ISO/IEC 14496-12.</p>
 <p>Tracks that are language-specific SHOULD carry a language tag in their media header [<a href="#ISOMREF"><em>ISOM</em></a>], augmented as necessary by an Extended Language Tag [<a href="#ISOMREF"><em>ISOM</em></a>].</p>
 <p>Other metadata, carried in either user data or metadata boxes MAY be present. When present they MUST NOT occur at file level, i.e. they must be contained in another permitted box, as permitted by ISO/IEC 14496-12.</p>
 </section>
@@ -1492,8 +1491,8 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <section>
 <h3 id="track-edit-list-box-elst">Track Edit List Box (‘elst’)</h3>
 <p>A single Edit List Box with the following constraints SHOULD be recorded in the CMF Header to document the earliest presentation time of an audio CMAF Track when the composition time of the first audio sample does not match the earliest video sample composition time of other CMF Tracks in a Presentation. In [ISOM] section 8.6.6, this is referred to as a “non-empty edit” that “provides the offset from media composition time to movie presentation time”.</p>
-<p>Audio Tracks in multimedia presentations SHALL start with the first audio Segment that overlaps or starts at the earliest presentation time of other synchronized CMAF Tracks. A “start offset” edit list MAY be used in a CMAF Header to indicate the presentation time of the audio Track that is synchronized with the Track Fragment Decode Time (‘tfdt’) of the first Segment in the video Track. A start offset edit list skips presentation of the leading audio during playback, but allows decoding from the start of an access unit in order to “prime” the decoder so it can output audio at the intended presentation start time.</p>
-<p>Audio/video synchronization and start time can be modified by timestamps and offsets in a Manifest. In that case, the presentation of each audio sample is synchronized to the Presentation Timeline, i.e. the presentation time offset between audio ‘tfdt’ baseMediaDecodeTime and the Presentation Timeline includes the start offset of the edit list in the CMAF Header, so a CMAF Player can ignore the recorded edit list and apply the manifest ‘tfdt’ to presentation time offset..</p>
+<p>Audio Tracks in multimedia presentations SHALL start with the first audio Segment that overlaps or starts at the earliest presentation time of other synchronized CMAF Tracks. A “start offset” edit list MAY be used in a <a>CMAF Header</a> to indicate the presentation time of the audio Track that is synchronized with the Track Fragment Decode Time (‘tfdt’) of the first Segment in the video Track. A start offset edit list skips presentation of the leading audio during playback, but allows decoding from the start of an access unit in order to “prime” the decoder so it can output audio at the intended presentation start time.</p>
+<p>Audio/video synchronization and start time can be modified by timestamps and offsets in a Manifest. In that case, the presentation of each audio sample is synchronized to the Presentation Timeline, i.e. the presentation time offset between audio ‘tfdt’ baseMediaDecodeTime and the Presentation Timeline includes the start offset of the edit list in the <a>CMAF Header</a>, so a CMAF Player can ignore the recorded edit list and apply the manifest ‘tfdt’ to presentation time offset..</p>
 <p>A start offset edit list SHALL be defined as a single Edit List Box (‘elst’) in an Edit Box (‘edts’) in an audio Track Box (‘trak’) with the following values:</p>
 <ul>
 <li><blockquote>
@@ -1552,7 +1551,7 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 </section>
 <section>
 <h3 id="sample-group-description-box-sgpd">Sample Group Description Box (‘sgpd’)</h3>
-<p>When sample group information can change within a CMAF Track, a Sample Group Description Box SHALL be stored in each CMAF Fragment that references that sample group description. If sample group information is the same for all Fragments in a Switching Set, it MAY be stored in a Sample Group Description Box in the CMAF Header Sample Table Box (‘stbl’).</p>
+<p>When sample group information can change within a CMAF Track, a Sample Group Description Box SHALL be stored in each CMAF Fragment that references that sample group description. If sample group information is the same for all Fragments in a Switching Set, it MAY be stored in a Sample Group Description Box in the <a>CMAF Header</a> Sample Table Box (‘stbl’).</p>
 <p>For example: when Common Encryption is used and KID values can change per CMAF Fragment, a Sample to Group Box (‘sbgp’) stored in each Track Fragment Box (‘traf’) will reference a Sample Group Description Box containing the KID, which is also stored in the Track Fragment Box in order to support random access.</p>
 </section>
 <section>
@@ -1570,8 +1569,8 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <h3 id="multiple-drm-support-informative">Multiple DRM Support (Informative)</h3>
 <p>Multiple DRM systems can provide a license for an encrypted Track using Common Encryption [<a href="#CENCREF"><em>CENC</em></a>]. The default_KID identifies the key and license required, and a registered SystemID identifies a Common Encryption capable DRM system. License acquisition information can be provided to identify which DRM systems can provide licenses. License acquisition information usually includes the URL of an authorization and license server, DRM SystemID, DRM client identification, type of license requested, media key identifier, etc., and may be stored in a ‘pssh’ box, a Manifest, or an application in order to assist players in requesting a license to decrypt a Track.</p>
 <p>A single key and license may be sufficient to access all tracks in a presentation, or HD and other high value content may be required to use different keys for audio and video tracks, since the audio path may be less secure. A content provider may also require different keys and licenses for different qualities, such as SD, HD, and UHD.</p>
-<p>CMAF requires license acquisition information to be signaled only in a Manifest or application when streaming, because it allows a CMAF Player application to parse all license acquisition information in advance of playback, and download the required license(s) only once. If license acquisition information is stored in a Protection System Specific Header Box (‘pssh’ version 0) in the CMAF header, a license may be requested each time a CMAF Header is processed, e.g. for bitrate switching. If ‘pssh’ version 0 were allowed, CMAF Player application would then have to analyze each proprietary header to determine if the request was a duplicate.</p>
-<p>Manifest signaling makes it easier to add or change license information without editing media files. That makes it easier to offer different types of licenses, e.g. subscription, rental, ownership, SD, HD, etc., without multiple media copies; and support different distribution channels and license servers with the same media. For a live streaming presentation, it is advantageous for players to request a license before the live media becomes available, authorize or purchase playback rights, and download a license in advance, rather than experience playback delay when thousands of players receive the first live Segment, which would be the case with license acquisition information stored in ‘pssh’ in the CMAF header.</p>
+<p>CMAF requires license acquisition information to be signaled only in a Manifest or application when streaming, because it allows a CMAF Player application to parse all license acquisition information in advance of playback, and download the required license(s) only once. If license acquisition information is stored in a Protection System Specific Header Box (‘pssh’ version 0) in the <a>CMAF Header</a>, a license may be requested each time a <a>CMAF Header</a> is processed, e.g. for bitrate switching. If ‘pssh’ version 0 were allowed, CMAF Player application would then have to analyze each proprietary header to determine if the request was a duplicate.</p>
+<p>Manifest signaling makes it easier to add or change license information without editing media files. That makes it easier to offer different types of licenses, e.g. subscription, rental, ownership, SD, HD, etc., without multiple media copies; and support different distribution channels and license servers with the same media. For a live streaming presentation, it is advantageous for players to request a license before the live media becomes available, authorize or purchase playback rights, and download a license in advance, rather than experience playback delay when thousands of players receive the first live Segment, which would be the case with license acquisition information stored in ‘pssh’ in the <a>CMAF Header</a>.</p>
 </section>
 <section>
 <h2 id="track-encryption">Track Encryption</h2>
@@ -1617,10 +1616,10 @@ Note that video with caption data embedded in the elementary stream (e.g. CEA 60
 <section>
 <h4 id="protection-system-specific-header-box-pssh">Protection System Specific Header Box (‘pssh’)</h4>
 <p>Common Encryption specifies version zero and version one Protection System Specific Header Boxes (‘pssh’). Protection System Specific Header Boxes can be used to store licenses in downloaded files, signal that license downloads are required in CMF Headers, and deliver licenses, keys, and usage information in CMF Fragments. Protection System Specific Header Boxes contain a registered SystemID that uniquely identifies the protection system intended to use the information. Information contained in the data[] array is considered opaque to Players, file parsers, and other DRM systems, and might be encrypted by the protection system.</p>
-<p>The Common Encryption standard [<a href="#CENCREF"><em>CENC</em></a>] also specifies XML elements to contain license acquisition information for use in Manifests. CMAF strongly recommends signaling license acquisition information only in the Manifest, not in CMAF Headers, to avoid triggering event handling each time a CMAF Header is processed when adaptive switching. A Player can download all licenses that will be needed for playback as soon as it parses the Manifest and before it downloads CMAF Headers. It is particularly useful to acquire licenses in advance of a large live streaming event that would otherwise result in a large number of synchronized license requests if triggered by the media stream.</p>
+<p>The Common Encryption standard [<a href="#CENCREF"><em>CENC</em></a>] also specifies XML elements to contain license acquisition information for use in Manifests. CMAF strongly recommends signaling license acquisition information only in the Manifest, not in <a>CMAF Header</a>s, to avoid triggering event handling each time a <a>CMAF Header</a> is processed when adaptive switching. A Player can download all licenses that will be needed for playback as soon as it parses the Manifest and before it downloads <a>CMAF Header</a>s. It is particularly useful to acquire licenses in advance of a large live streaming event that would otherwise result in a large number of synchronized license requests if triggered by the media stream.</p>
 <p>CMAF specifies the following constraints:</p>
 <ul>
-<li><p>‘pssh’ boxes SHOULD NOT be present in CMAF Headers, except as specified below, and MAY be ignored if present. In a generic CMAF Player, it is assumed that all ‘pssh’ boxes in CMAF Headers or CMAF Segments will be passed directly to the DRM content decryption module without Player processing.</p></li>
+<li><p>‘pssh’ boxes SHOULD NOT be present in <a>CMAF Header</a>s, except as specified below, and MAY be ignored if present. In a generic CMAF Player, it is assumed that all ‘pssh’ boxes in <a>CMAF Header</a>s or CMAF Segments will be passed directly to the DRM content decryption module without Player processing.</p></li>
 <li><p>A Common ‘pssh’ box and additional ‘pssh’ boxes in CMF Header MAY be used with Presentation-specific playback applications that can read the KID from the Common ‘pssh’ and implement application-specific license management. A Common PSSH is defined by W3C Encrypted Media Extension specification as a version one ‘pssh’ box with a W3C designated SystemID, and the track’s default_KID listed in the version one ‘pssh’ box KID array, but it contains no data in the data[] array. A presentation-specific playback application that has information on license servers, the format of license requests, etc. can use the default_KID in a Common ‘pssh’ box or the Manifest to request a license for each unique default_KID.</p></li>
 <li><p>‘pssh’ version one boxes MAY be present in CMAF Fragments for the purpose of providing protection system information, such as encrypted keys in licenses, for use by the DRM system with a SystemID matching the ‘pssh’ SystemID. Multiple ‘pssh’ boxes with different SystemIDs may be present to enable different protection systems on different devices.<br />
 <br />
@@ -1972,7 +1971,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </section>
 <section>
 <h4 id="video-parameter-sets-vps">Video Parameter Sets (VPS)</h4>
-<p>Each HEVC video sample in the CMAF Track SHALL reference the VPS in the CMAF Header sample entry. VPS does not change within CMAF Tracks or between CMAF Tracks in a Switching Set. A CMAF HEVC track shall conform to [<a href="#H265REF"><em>HEVC</em></a>] with the following additional constraints:</p>
+<p>Each HEVC video sample in the CMAF Track SHALL reference the VPS in the <a>CMAF Header</a> sample entry. VPS does not change within CMAF Tracks or between CMAF Tracks in a Switching Set. A CMAF HEVC track shall conform to [<a href="#H265REF"><em>HEVC</em></a>] with the following additional constraints:</p>
 <ul>
 <li><blockquote>
 <p>The following fields SHALL have pre-determined values as follows:</p>
@@ -2133,7 +2132,7 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </section>
 <section>
 <h3 id="video-color-and-dynamic-range-mastering">Video color and dynamic range mastering</h3>
-<p>Video streams conforming to CMAF SHALL be encoded using the transfer characteristics, color parameters, and grading specified in each video Media Profile, and the Media Profile, indicated by that Media Profile’s compatibility brand in the CMAF Header. See Video Media Profiles and Track Brands Annex [‎A.2].</p>
+<p>Video streams conforming to CMAF SHALL be encoded using the transfer characteristics, color parameters, and grading specified in each video Media Profile, and the Media Profile, indicated by that Media Profile’s compatibility brand in the <a>CMAF Header</a>. See Video Media Profiles and Track Brands Annex [‎A.2].</p>
 <p>For all Media Profiles, unless signaled otherwise in Sequence Parameter Sets or SEI messages, default transfer characteristics and grading SHALL be assumed. Default grading is defined as a viewing environment that complies with [<a href="#R2035REF"><em>R2035</em></a>] for presentation on a display which uses the electro-optic transfer function specified in [R1886] with a peak luminance of 100 cd/m2.</p>
 <p>Video MAY be graded for presentation on a display which uses an electro-optic transfer function not specified in [R1886] with a peak luminance greater than 100 cd/m2, in which case, the grading profile SHOULD be signaled by VUI and/or [ST2086] metadata in SEI messages contained in the sample entry ‘avcC’ or ‘hvcC’ box, and content descriptors in CMAF compliant Manifests.</p>
 </section>
@@ -2177,11 +2176,11 @@ CMAF Presentation and Media Profiles. CMAF video Tracks SHALL be encoded as fram
 </section>
 <section>
 <h2 id="general-requirements-for-cmaf-compatible-audio-media-profiles">General Requirements for CMAF Compatible Audio Media Profiles</h2>
-<p>All audio Media Profiles SHALL define a compatibility brand for the ‘ftyp’ box in the CMAF Header.</p>
-<p>All audio Media Profiles SHALL define sample entries and decoder configuration information required in the CMAF Header.</p>
+<p>All audio Media Profiles SHALL define a compatibility brand for the ‘ftyp’ box in the <a>CMAF Header</a>.</p>
+<p>All audio Media Profiles SHALL define sample entries and decoder configuration information required in the <a>CMAF Header</a>.</p>
 <p>All audio Media Profiles SHALL define Internet Media Type “codecs” parameters that can be used to identify the CMAF Track in a Manifest.</p>
 <p>All audio Media Profiles SHALL define CMAF Fragment and sample encoding constraints and signaling necessary to random access Segments and samples, and initiate decoded output (e.g. “priming” predicted samples).</p>
-<p>Audio Track Switching Sets SHALL be bitstream switchable unless a Media Profile specifies that it is never bitstream switchable (in which case, it always requires processing a CMAF Header prior to every sequence of Segments from a different CMAF Track).</p>
+<p>Audio Track Switching Sets SHALL be bitstream switchable unless a Media Profile specifies that it is never bitstream switchable (in which case, it always requires processing a <a>CMAF Header</a> prior to every sequence of Segments from a different CMAF Track).</p>
 <p>CMAF Compatible audio Media Profiles MAY define Switching Set constraints to enable seamless bitrate switching between time aligned CMAF Fragments in alternative CMAF Tracks.</p>
 <p>All audio Tracks SHOULD contain loudness and dynamic range information in the bitstream conforming to DRC Presentation Mode in ISO/IEC 14496-3:2009 and Amendment 4 [AAC].</p>
 <p>See [‎A.3] for details of audio media profiles and track brands.</p>
